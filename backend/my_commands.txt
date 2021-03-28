@@ -1,0 +1,39 @@
+pip list
+pip install virtualenv
+cls
+virtualenv myenv
+cls
+myenv\scripts\activate
+pip list
+pip install django
+django-admin startproject backend
+cd backend
+
+python manage.py runserver
+
+python manage.py startapp base
+django-rest-framework.org
+pip install djangorestframework
+
+python manage.py makemigrations
+python manage.py migrate
+
+pip install django-cors-headers
+
+
+python manage.py createsuperuser
+
+pip install pillow
+pip install djangorestframework-simplejwt
+
+
+# git commands
+rm -rf .git
+rm .gitignore
+ls -lha
+pwd
+cd Documents/CODE/FULLSTACK/eccomerce_fullstack_proshop/
+mv ecom_tmp/ frontend  # меняем название на папку frontend
+git add .
+git status
+
