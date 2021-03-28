@@ -18,7 +18,7 @@ pip install djangorestframework
 python manage.py makemigrations
 python manage.py migrate
 
-pip install django-cors-headers
+python -m pip install django-cors-headers
 
 
 python manage.py createsuperuser
