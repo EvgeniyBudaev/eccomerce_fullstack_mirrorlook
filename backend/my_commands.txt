@@ -26,6 +26,8 @@ python manage.py createsuperuser
 pip install pillow
 pip install djangorestframework-simplejwt
 
+python manage.py collectstatic
+
 
 # git commands
 rm -rf .git
