@@ -5,9 +5,8 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from rest_framework import status
 
-from .models import Product
-from .products import products
-from .serializers import ProductSerializer
+from .models import Product, Category
+from .serializers import ProductSerializer, CategorySerializer
 
 
 # Create your views here.
@@ -45,4 +44,11 @@ def get_products(request):
 def get_product(request, pk):
   product = Product.objects.get(_id=pk)
   serializer = ProductSerializer(product, many=False)
+  return Response(serializer.data)
+
+
+@api_view(['GET'])
+def get_categories(request):
+  categories = Category.objects.all()
+  serializer = CategorySerializer(categories, many=True)
   return Response(serializer.data)

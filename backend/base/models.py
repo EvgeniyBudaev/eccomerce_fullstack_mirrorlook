@@ -3,10 +3,19 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+class Category(models.Model):
+  name = models.CharField(max_length=255, verbose_name='Имя категории')
+  image = models.ImageField(null=True, blank=True)
+  slug = models.SlugField(unique=True)
+  _id = models.AutoField(primary_key=True, editable=False)
+
+  def __str__(self):
+    return self.name
+
 
 class Product(models.Model):
   user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)  # При True Django сохранит пустое значение как NULL в базе данных. Значение по умолчанию – False.
-  category = models.CharField(max_length=200, null=True, blank=True, verbose_name='Категория')
+  category = models.ForeignKey(Category, null=True, verbose_name='Категория', on_delete=models.CASCADE)
   name = models.CharField(max_length=200, null=True, blank=True, verbose_name='Наименование')
   image = models.ImageField(null=True, blank=True)
   description = models.TextField(null=True, blank=True, verbose_name='Описание')
@@ -100,8 +109,3 @@ class ShippingAddress(models.Model):
     return str(self.address)
 
 
-class Category(models.Model):
-  product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
-  name = models.CharField(max_length=200, null=True, blank=True, verbose_name='Название')
-  image = models.ImageField(null=True, blank=True)
-  ur_category_name = models.CharField(max_length=200, null=True, blank=True, verbose_name='URL категории')
