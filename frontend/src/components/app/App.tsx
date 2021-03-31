@@ -5,15 +5,18 @@ import Header from "../header"
 import HomeScreen from "../../screens/homeScreen"
 import ProductScreen from "../../screens/productScreen"
 import CategoriesScreen from "../../screens/categoriesScreen"
+import MainLayout from "../layouts/mainLayout"
 
 
 const App: React.FC = () => {
-  return <div>
-    <Header />
-    <Route path='/categories/' component={CategoriesScreen} />
+  return (
+    <MainLayout>
+      <Header />
+      <Route path='/categories/' component={CategoriesScreen} />
       <Route path='/products/' component={HomeScreen} exact />
       <Route path='/products/:id' component={ProductScreen} />
-  </div>
+    </MainLayout>
+  )
 }
 
 export default App
