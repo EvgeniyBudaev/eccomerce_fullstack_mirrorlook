@@ -5,7 +5,9 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from rest_framework import status
 
+from .models import Product
 from .products import products
+from .serializers import ProductSerializer
 
 
 # Create your views here.
@@ -32,15 +34,13 @@ def get_routes(request):
 
 @api_view(['GET'])
 def get_products(request):
-  return Response(products)
+  products = Product.objects.all()
+  serializer = ProductSerializer(products, many=True)  # установив many=True , вы сообщаете drf, что queryset содержит несколько элементов (список элементов), поэтому drf должен сериализовать каждый элемент с помощью класса serializer (и serializer.data будет списком). если вы не зададите этот аргумент, это означает, что queryset-это один экземпляр, а serializer.data - один объект)
+  return Response(serializer.data)
 
 
 @api_view(['GET'])
 def get_product(request, pk):
-  product = None
-  for i in products:
-    if i['_id'] == pk:
-      product = i
-      break
-
-  return Response(product)
+  product = Product.objects.get(_id=pk)
+  serializer = ProductSerializer(product, many=False)
+  return Response(serializer.data)
