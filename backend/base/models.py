@@ -98,3 +98,10 @@ class ShippingAddress(models.Model):
 
   def __str__(self):
     return str(self.address)
+
+
+class Category(models.Model):
+  product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+  name = models.CharField(max_length=200, null=True, blank=True, verbose_name='Название')
+  image = models.ImageField(null=True, blank=True)
+  ur_category_name = models.CharField(max_length=200, null=True, blank=True, verbose_name='URL категории')

@@ -16,6 +16,8 @@ from .serializers import ProductSerializer
 @api_view(['GET'])
 def get_routes(request):
   routes = [
+    '/api/categories/',
+
     '/api/products/',
     '/api/products/create/',
 

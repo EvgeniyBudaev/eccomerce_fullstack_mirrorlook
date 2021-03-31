@@ -9,7 +9,7 @@ import ProductScreen from "../../screens/productScreen"
 const App: React.FC = () => {
   return <div>
     <Header />
-      <Route path='/' component={HomeScreen} exact />
+      <Route path='/products/' component={HomeScreen} exact />
       <Route path='/products/:id' component={ProductScreen} />
   </div>
 }
