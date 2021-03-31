@@ -1,3 +1,7 @@
+# Форматирование кода
+# на mac option + command + L
+# на windows ctrl + alt + I
+
 pip list
 pip install virtualenv
 cls
