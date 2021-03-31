@@ -39,4 +39,5 @@ const productDetailsReducer = (state = { product: {reviews: []} }, action) => {
     }
 }
 
+
 export { productListReducer, productDetailsReducer }
