@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Header from "../../header"
 import Footer from "../../footer"
 import styles from './mainLayout.module.scss'
 
@@ -9,7 +10,7 @@ const MainLayout = (props) => {
         <>
       <div className={styles.wrapper}>
         <div className={styles.content}>
-          {/*<Header />*/}
+          <Header />
           {props.children}
         </div>
         <div className={styles.footer}>

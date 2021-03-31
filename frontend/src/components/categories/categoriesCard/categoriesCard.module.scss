@@ -1,0 +1,57 @@
+.categoriesCard {
+  max-width: 280px;
+  width: 100%;
+  position: relative;
+  justify-self: center;
+  & .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-height: 100%;
+    overflow-x: hidden;
+  }
+  & .header {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+    & h2 {
+      font-size: 24px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      max-width: 140px;
+      width: 100%;
+      min-height: 80px;
+    }
+  }
+  & .content {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    min-height: 280px;
+  }
+}
+
+.hoverShadow {
+  position: relative;
+}
+
+.hoverShadow::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  transition: all 0.5s;
+}
+
+.hoverShadow:hover::after {
+  background: rgba(0, 0, 0, 0.4);
+}

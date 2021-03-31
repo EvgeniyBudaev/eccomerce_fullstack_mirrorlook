@@ -1,0 +1,29 @@
+.categories {
+}
+
+.container {
+  /*ширина контейнера чистая 1170px*/
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-gap: 30px;
+  margin-bottom: 50px;
+}
+
+@media (max-width: 630px) {
+  .inner {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 500px) {
+  .inner {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
