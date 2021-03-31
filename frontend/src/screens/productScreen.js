@@ -18,6 +18,8 @@ const ProductScreen = ({ match }) => {
         <div>
             <Link to='/'>Go Back</Link>
             {product.name}
+            <div></div>
+            <img src={product.image} alt=""/>
         </div>
     )
 }
