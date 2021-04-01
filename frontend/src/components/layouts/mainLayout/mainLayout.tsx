@@ -5,7 +5,7 @@ import Footer from "../../footer"
 import styles from './mainLayout.module.scss'
 
 
-const MainLayout = (props) => {
+const MainLayout: React.FC = (props) => {
   return (
         <>
       <div className={styles.wrapper}>
