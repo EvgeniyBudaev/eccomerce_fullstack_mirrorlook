@@ -1,7 +1,5 @@
 import React, {useEffect} from 'react'
 import { NavLink } from 'react-router-dom'
-import { createStructuredSelector } from 'reselect'
-import { useDispatch } from 'react-redux'
 import { connect } from 'react-redux'
 
 import styles from './categories.module.scss'
@@ -15,19 +13,21 @@ import {
   categoriesLoadingSelector
 } from "../../redux/selectors"
 import Loader from "../loader"
+import { CategoriesPropsType, MapStatePropsCategoriesType } from "../../redux/types"
+import {RootStateType} from "../../redux/reducers"
 
-const Categories = (props) => {
+
+const Categories: React.FC<CategoriesPropsType> = (props) => {
   const {
     categories,
     loadingCategories,
-    loadedCategories
+    loadedCategories,
+    fetchCategories
   } = props
 
-  const dispatch = useDispatch()
-
   useEffect(() => {
-    if (!loadingCategories && !loadedCategories) dispatch(fetchCategories())
-  }, [dispatch,loadingCategories,loadedCategories])
+    if (!loadingCategories && !loadedCategories) fetchCategories()
+  }, [loadingCategories, loadedCategories, fetchCategories])
 
   if (loadingCategories || !loadedCategories) return <Loader />
 
@@ -48,12 +48,18 @@ const Categories = (props) => {
 }
 
 
-export default connect(
-  createStructuredSelector({
-    categories: categoriesListSelector,
-    loadingCategories: categoriesLoadingSelector,
-    loadedCategories: categoriesLoadedSelector,
-  })
-)(Categories)
+const mapStateToProps = (state: RootStateType): MapStatePropsCategoriesType => {
+  return {
+    categories: categoriesListSelector(state),
+    loadingCategories: categoriesLoadingSelector(state),
+    loadedCategories: categoriesLoadedSelector(state),
+  }
+}
+
+const connector = connect(mapStateToProps, {fetchCategories})
+
+
+export default connector(Categories)
+
 
 
