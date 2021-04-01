@@ -14,7 +14,7 @@ const initialState = {
 
 const categoriesReducer = (state = initialState, action) => {
   const {type, payload, error} = action
-  console.log('reducer action', action)
+  // console.log('reducer action', action)
 
   switch (type) {
     case LOAD_CATEGORIES_REQUEST:

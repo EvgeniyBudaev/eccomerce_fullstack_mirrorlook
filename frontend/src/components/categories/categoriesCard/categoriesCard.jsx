@@ -5,7 +5,7 @@ import styles from './categoriesCard.module.scss'
 
 
 const CategoriesCard = (props) => {
-  const {name, images} = props
+  const {name, image} = props
   const content = cn(styles.content, styles.hoverShadow)
 
   return (
@@ -16,7 +16,7 @@ const CategoriesCard = (props) => {
             <h2 className={styles.categoriesCard}>{name}</h2>
           </div>
           <div className={content}>
-            <img src={images} alt="categories-images" />
+            <img src={image} alt="" />
           </div>
         </div>
       </div>

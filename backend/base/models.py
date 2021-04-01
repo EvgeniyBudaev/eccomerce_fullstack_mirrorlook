@@ -7,7 +7,7 @@ class Category(models.Model):
   name = models.CharField(max_length=255, verbose_name='Имя категории')
   image = models.ImageField(null=True, blank=True)
   slug = models.SlugField(unique=True)
-  _id = models.AutoField(primary_key=True, editable=False)
+  id = models.AutoField(primary_key=True, editable=False)
 
   def __str__(self):
     return self.name
@@ -43,7 +43,7 @@ class Product(models.Model):
   country_manufacturer = models.CharField(max_length=64, null=True, blank=True, verbose_name='Страна производства')
   manufacturer = models.CharField(max_length=64, null=True, blank=True, verbose_name='Производитель')
   created_at = models.DateTimeField(auto_now_add=True)
-  _id = models.AutoField(primary_key=True, editable=False)
+  id = models.AutoField(primary_key=True, editable=False)
 
   def __str__(self):
     return self.name
@@ -60,7 +60,7 @@ class Review(models.Model):
   name = models.CharField(max_length=200, null=True, blank=True, verbose_name='Наименование')
   rating = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True, verbose_name='Рейтинг')
   comment = models.TextField(null=True, blank=True, verbose_name='Комментарий')
-  _id = models.AutoField(primary_key=True, editable=False)
+  id = models.AutoField(primary_key=True, editable=False)
 
   def __str__(self):
     return str(self.rating)
@@ -77,7 +77,7 @@ class Order(models.Model):
   is_delivered = models.BooleanField(default=False, verbose_name='Статус доставки')
   delivered_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата доставки')
   created_at = models.DateTimeField(auto_now_add=False, null=True, blank=True, verbose_name='Дата создания')
-  _id = models.AutoField(primary_key=True, editable=False)
+  id = models.AutoField(primary_key=True, editable=False)
 
   def __str__(self):
     return str(self.createdAt)
@@ -90,7 +90,7 @@ class OrderItem(models.Model):
   qty = models.IntegerField(null=True, blank=True, default=0, verbose_name='Кол-во')
   price = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True, verbose_name='Цена')
   image = models.CharField(max_length=200, null=True, blank=True, verbose_name='Фото')
-  _id = models.AutoField(primary_key=True, editable=False)
+  id = models.AutoField(primary_key=True, editable=False)
 
   def __str__(self):
     return str(self.name)
@@ -103,7 +103,7 @@ class ShippingAddress(models.Model):
   postalCode = models.CharField(max_length=200, null=True, blank=True, verbose_name='Индекс')
   country = models.CharField(max_length=200, null=True, blank=True, verbose_name='Страна')
   shippingPrice = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True, verbose_name='Стоимость доставки')
-  _id = models.AutoField(primary_key=True, editable=False)
+  id = models.AutoField(primary_key=True, editable=False)
 
   def __str__(self):
     return str(self.address)

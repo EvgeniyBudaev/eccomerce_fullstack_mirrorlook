@@ -1,7 +1,7 @@
 import axios from "axios"
+import { createAsyncAction } from 'typesafe-actions'
+
 import { LOAD_CATEGORIES_REQUEST, LOAD_CATEGORIES_FAILURE, LOAD_CATEGORIES_SUCCESS } from "../../constants/categoriesConstants"
-
-
 
 
 const fetchCategories = () => async (dispatch) => {
