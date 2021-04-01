@@ -4,7 +4,12 @@ import cn from 'classnames'
 import styles from './categoriesCard.module.scss'
 
 
-const CategoriesCard = (props) => {
+interface ICategoriesCard {
+  name: string,
+  image: string
+}
+
+const CategoriesCard: React.FC<ICategoriesCard> = (props) => {
   const {name, image} = props
   const content = cn(styles.content, styles.hoverShadow)
 
@@ -23,5 +28,6 @@ const CategoriesCard = (props) => {
     </>
   )
 }
+
 
 export default CategoriesCard
