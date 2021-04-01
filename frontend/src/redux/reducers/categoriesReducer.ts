@@ -1,20 +1,22 @@
 import { arrToMap } from '../../utilities/utils'
 
 import { LOAD_CATEGORIES_REQUEST, LOAD_CATEGORIES_SUCCESS, LOAD_CATEGORIES_FAILURE } from "../../constants/categoriesConstants"
+import {CategoriesTypes} from "../types"
 
 
 const initialState = {
   entities: {},
   loading: false,
   loaded: false,
-  error: null,
-  response: null,
+  error: null as object | null,
+  payload: null as object | null,
 }
 
+export type InitialStateCategoriesType = typeof initialState
+type Types = InitialStateCategoriesType & CategoriesTypes
 
-const categoriesReducer = (state = initialState, action) => {
+const categoriesReducer = (state = initialState, action: Types):InitialStateCategoriesType => {
   const {type, payload, error} = action
-  // console.log('reducer action', action)
 
   switch (type) {
     case LOAD_CATEGORIES_REQUEST:
@@ -41,5 +43,6 @@ const categoriesReducer = (state = initialState, action) => {
       return state
   }
 }
+
 
 export { categoriesReducer }
