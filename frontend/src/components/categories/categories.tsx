@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import styles from './categories.module.scss'
 import CategoriesCard from './categoriesCard'
 import LineInfo from '../lineInfo'
-import {ROUTES} from '../../routes'
+import { ROUTES } from '../../routes'
 import { fetchCategories } from '../../redux/actions/categoriesAction'
 import {
   categoriesListSelector,
@@ -14,7 +14,7 @@ import {
 } from "../../redux/selectors"
 import Loader from "../loader"
 import { CategoriesPropsType, MapStatePropsCategoriesType } from "../../redux/types"
-import {RootStateType} from "../../redux/reducers"
+import { RootStateType } from "../../redux/reducers"
 
 
 const Categories: React.FC<CategoriesPropsType> = (props) => {

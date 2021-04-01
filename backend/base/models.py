@@ -15,7 +15,7 @@ class Category(models.Model):
 
 class Product(models.Model):
   user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)  # При True Django сохранит пустое значение как NULL в базе данных. Значение по умолчанию – False.
-  category = models.ForeignKey(Category, null=True, verbose_name='Категория', on_delete=models.CASCADE)
+  category_id = models.ForeignKey(Category, null=True, verbose_name='Категория', on_delete=models.CASCADE)
   name = models.CharField(max_length=200, null=True, blank=True, verbose_name='Наименование')
   image = models.ImageField(null=True, blank=True)
   description = models.TextField(null=True, blank=True, verbose_name='Описание')
