@@ -16,6 +16,8 @@ from .serializers import ProductSerializer, CategorySerializer
 def get_routes(request):
   routes = [
     '/api/categories/',
+    '/api/categories/<slug>/',
+    '/api/categories/<slug>/products/',
 
     '/api/products/',
     '/api/products/create/',

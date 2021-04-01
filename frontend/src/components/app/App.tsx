@@ -7,13 +7,14 @@ import MainLayout from "../layouts/mainLayout"
 import {ROUTES} from '../../routes'
 import AboutPage from '../about'
 import CategoriesPage from "../pages/categoriesPage"
+import CatalogPage from "../pages/catalogPage"
 
 
 const App: React.FC = () => {
   return (
     <MainLayout>
       <Switch>
-        <Route path={ROUTES.CATEGORIES} component={CategoriesPage} />
+        <Route path={ROUTES.CATEGORIES} component={CatalogPage} />
         <Route path={ROUTES.ABOUT} component={AboutPage} />
         <Route path='/products/' component={HomeScreen} exact />
         <Route path='/products/:id' component={ProductScreen} />

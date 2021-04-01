@@ -14,24 +14,24 @@ const initialState = {
 // { [productId]: product }
 const productsReducer = (state = initialState, action) =>
   produce(state, (draft) => {
-    const {type, payload, categoryId} = action
+    const {type, payload, category_id} = action
     //console.log('[productsReducer][action]', action)
 
     switch (type) {
       case LOAD_PRODUCTS_REQUEST: {
-        draft.loading[categoryId] = true
+        draft.loading[category_id] = true
         break
       }
       case LOAD_PRODUCTS_SUCCESS: {
-        draft.loading[categoryId] = false
-        draft.loaded[categoryId] = true
+        draft.loading[category_id] = false
+        draft.loaded[category_id] = true
         draft.error = null
         draft.entities = {...draft.entities, ...arrToMap(payload)}
         break
       }
       case LOAD_PRODUCTS_FAILURE: {
-        draft.loading[categoryId] = false
-        draft.loaded[categoryId] = false
+        draft.loading[category_id] = false
+        draft.loaded[category_id] = false
         draft.error = payload
         break
       }
