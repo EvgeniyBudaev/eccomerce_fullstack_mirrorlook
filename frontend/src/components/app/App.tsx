@@ -16,8 +16,8 @@ const App: React.FC = () => {
       <Switch>
         <Route path={ROUTES.CATEGORIES} component={CatalogPage} />
         <Route path={ROUTES.ABOUT} component={AboutPage} />
-        <Route path='/products/' component={HomeScreen} exact />
-        <Route path='/products/:id' component={ProductScreen} />
+        {/*<Route path='/products/' component={HomeScreen} exact />*/}
+        {/*<Route path='/products/:id' component={ProductScreen} />*/}
       </Switch>
     </MainLayout>
   )

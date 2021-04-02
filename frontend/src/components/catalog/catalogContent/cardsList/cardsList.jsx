@@ -1,87 +1,31 @@
 import React, {useEffect} from 'react'
-import styles from './cardsList.module.scss'
-import Card from '../../../card'
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router'
 import {createStructuredSelector} from 'reselect'
+
 import {
   productsLoadedSelector,
   productsLoadingSelector,
 } from '../../../../redux/selectors'
-import {loadProducts} from '../../../../redux/actions/actions'
 import Loader from '../../../loader'
-import {withRouter} from 'react-router'
-import {getPaginator, limit} from '../../../../utilities/utils'
-import {stringify} from 'query-string'
 
-// class CardsList extends Component {
-//   state = {error: null}
-//
-//   loadProductsIfNeeded = () => {
-//     const {loadProducts, categoryId, loading, loaded} = this.props
-//     if (!loading && !loaded) {
-//       loadProducts(categoryId)
-//     }
-//   }
-//
-//   componentDidMount() {
-//     this.loadProductsIfNeeded()
-//   }
-//
-//   componentDidUpdate(prevProps, prevState) {
-//     if (prevProps.categoryId !== this.props.categoryId) {
-//       this.loadProductsIfNeeded()
-//     }
-//   }
-//
-//   componentDidCatch(error) {
-//     this.setState({error})
-//   }
-//
-//   render() {
-//     console.log('[cardsList][props]', this.props)
-//     const {products, loading, location} = this.props
-//     const {currentPage, offset} = getPaginator(location.search)
-//     console.log('ff', offset, currentPage)
-//     const stringifiedParams = stringify({
-//       limit,
-//       offset
-//     })
-//
-//     if (loading) {
-//       return <Loader />
-//     }
-//
-//     if (this.state.error) {
-//       return <p>В этом ресторане меню не доступно</p>
-//     }
-//
-//     return (
-//       <ul className={styles.cardsList}>
-//         {products.map((id) => (
-//           <Card key={id} id={id} />
-//         ))}
-//       </ul>
-//     )
-//   }
-// }
+import {fetchProducts} from "../../../../redux/actions/productsAction"
+import styles from './cardsList.module.scss'
+import Card from "../../../card"
+
+
 
 const CardsList = (props) => {
-  //console.log('[CardsList][props]', props)
-  const { loadProducts, categoryId, products, loading, loaded, location, isClickedBtnGrid } = props;
+  console.log('[CardsList][props]', props)
+  const { fetchProducts, categoryId, products, loading, loaded} = props;
 
-    const {currentPage, offset} = getPaginator(location.search)
-    //console.log('[CardsList][offset, currentPage]', offset, currentPage)
-    const stringifiedParams = stringify({
-      limit,
-      offset
-    })
 
 
   useEffect(() => {
     if (!loading && !loaded) {
-      loadProducts(categoryId, stringifiedParams);
+      fetchProducts(categoryId);
     }
-  }, [loadProducts, loading, loaded, categoryId, currentPage, stringifiedParams])
+  }, [fetchProducts, loading, loaded, categoryId])
 
 
     if (loading) {
@@ -90,7 +34,7 @@ const CardsList = (props) => {
 
     return (
       <ul className={styles.cardsList}>
-        {products.map(id => <Card key={id} id={id} isClickedBtnGrid={isClickedBtnGrid} />)}
+        {products.map(product => <Card key={product.id} product={product} />)}
       </ul>
     )
 }
@@ -100,7 +44,7 @@ export default withRouter(connect(
     loading: productsLoadingSelector,
     loaded: productsLoadedSelector,
   }),
-  {loadProducts}
+  {fetchProducts}
 )(CardsList))
 
 

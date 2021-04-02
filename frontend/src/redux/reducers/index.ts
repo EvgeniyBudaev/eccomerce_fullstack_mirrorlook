@@ -2,7 +2,8 @@ import { combineReducers } from 'redux'
 
 import {productDetailsReducer, productListReducer} from "./productReducer"
 import {categoriesReducer} from "./categoriesReducer"
-import productsReducer from "./productsReducer"
+import {productsReducer} from "./productsReducer"
+
 
 
 const rootReducer = combineReducers({
