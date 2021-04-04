@@ -3,6 +3,11 @@ from django.contrib.auth.models import User
 
 from .models import Product, Category
 
+class CategorySerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Category
+    fields = '__all__'
+
 
 class ProductSerializer(serializers.ModelSerializer):
   class Meta:
@@ -10,7 +15,3 @@ class ProductSerializer(serializers.ModelSerializer):
     fields = '__all__'
 
 
-class CategorySerializer(serializers.ModelSerializer):
-  class Meta:
-    model = Category
-    fields = '__all__'

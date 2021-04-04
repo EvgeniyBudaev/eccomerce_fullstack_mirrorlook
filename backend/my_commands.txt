@@ -23,6 +23,7 @@ python manage.py makemigrations
 python manage.py migrate
 
 python -m pip install django-cors-headers
+pip install django-filter
 
 
 python manage.py createsuperuser

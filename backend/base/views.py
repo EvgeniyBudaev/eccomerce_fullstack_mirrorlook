@@ -4,6 +4,8 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from rest_framework import status
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import generics
 
 from .models import Product, Category
 from .serializers import ProductSerializer, CategorySerializer
@@ -58,10 +60,19 @@ def get_categories(request):
 
 
 @api_view(['GET'])
-def get_category(request, category_slug):
-  category = Category.objects.get(slug=category_slug)
-  serializer = CategorySerializer(category, many=False)
+def get_products_by_category(request, category_slug):
+  category = None
+  products = Product.objects.all()
+  print(products)
+  if category_slug:
+    category = Category.objects.get(slug=category_slug)
+    productsAfterFilter = products.filter(id=category.id)
+    print(productsAfterFilter)
+  serializer = ProductSerializer(productsAfterFilter, many=True)
   return Response(serializer.data)
+
+
+
 
 
 
