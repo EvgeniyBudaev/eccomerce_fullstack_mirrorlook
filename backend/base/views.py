@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
@@ -18,6 +18,7 @@ def get_routes(request):
     '/api/categories/',
     '/api/categories/<slug>/',
     '/api/categories/<slug>/products/',
+    '/api/categories/<slug:category_slug>/',
 
     '/api/products/',
     '/api/products/create/',
@@ -54,3 +55,14 @@ def get_categories(request):
   categories = Category.objects.all()
   serializer = CategorySerializer(categories, many=True)
   return Response(serializer.data)
+
+
+@api_view(['GET'])
+def get_category(request, category_slug):
+  category = Category.objects.get(slug=category_slug)
+  serializer = CategorySerializer(category, many=False)
+  return Response(serializer.data)
+
+
+
+
