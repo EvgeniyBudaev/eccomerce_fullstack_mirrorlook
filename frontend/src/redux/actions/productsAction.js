@@ -4,12 +4,14 @@ import {LOAD_PRODUCTS_FAILURE, LOAD_PRODUCTS_REQUEST, LOAD_PRODUCTS_SUCCESS} fro
 
 
 
-const fetchProducts = (categoryId) => async (dispatch) => {
+const fetchProducts = (categoryId, slug) => async (dispatch) => {
     try {
         dispatch({type: LOAD_PRODUCTS_REQUEST })
-        const {data} = await axios.get('/api/products/')
+        const {data} = await axios.get(`/api/categories/${slug}/`)
         console.log('data action', data)
-        dispatch({type: LOAD_PRODUCTS_SUCCESS, payload: data, categoryId})
+        console.log('slug', slug)
+        console.log('categoryId',  categoryId)
+        dispatch({type: LOAD_PRODUCTS_SUCCESS, payload: data, categoryId, slug})
     } catch (error) {
         dispatch({type: LOAD_PRODUCTS_FAILURE, payload: error.response && error.response.data.detail
         ? error.response.data.detail

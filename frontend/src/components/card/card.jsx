@@ -6,6 +6,7 @@ import ClassNames from 'classnames'
 
 import styles from './card.module.scss'
 import {ROUTES} from '../../routes'
+import {productSelector} from "../../redux/selectors"
 
 
 
@@ -64,6 +65,7 @@ const Card = (props) => {
     </div>
   )
 }
+
 
 
 export default Card

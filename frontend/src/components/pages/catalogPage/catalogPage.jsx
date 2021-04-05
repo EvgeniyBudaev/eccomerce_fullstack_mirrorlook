@@ -14,7 +14,7 @@ const CatalogPage = () => {
   return (
     <>
       <Switch>
-        <Route path={ROUTES.CATEGORIES + ':restId'} component={Catalog} />
+        <Route path={ROUTES.CATEGORIES + ':slug'} component={Catalog} />
         <Route path={ROUTES.CATEGORIES} component={CategoriesPage} />
       </Switch>
     </>

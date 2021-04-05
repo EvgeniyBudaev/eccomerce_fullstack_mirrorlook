@@ -1,39 +1,28 @@
-import React, {useEffect} from 'react'
-import {connect, useDispatch, useSelector} from "react-redux"
+import React from 'react'
+import {useSelector} from "react-redux"
 import {withRouter} from "react-router"
-import {createStructuredSelector} from "reselect"
 
 import styles from './catalogContent.module.scss'
-import {fetchProducts} from "../../../redux/actions/productsAction"
-import {categoriesListSelector, productsSelector} from "../../../redux/selectors"
+import {categoriesListSelector} from "../../../redux/selectors"
 import CardsList from "./cardsList"
 
 
 
 const CatalogContent = (props) => {
-  const {match, productsAllByHashMap} = props
+  console.log('[CatalogContent][props]', props)
+  const {match} = props
 
   const categories = useSelector(categoriesListSelector)
-  const {restId} = match.params
-  const category = categories.find((category) => category.slug === restId)
-  // console.log('[category] ', category)
-
-  console.log('productsAllByHashMap', productsAllByHashMap)
-  const productsAll = Object.values(productsAllByHashMap)
-  console.log('productsAll ', productsAll )
+  const {slug} = match.params
+  const category = categories.find((category) => category.slug === slug)
 
 
   return (
     <div className={styles.catalogContent}>
-      <CardsList categoryId={category.id} products={productsAll}  />
+      <CardsList categoryId={category.id} slug={slug} />
     </div>
   )
 }
 
 
-
-const mapStateToProps = createStructuredSelector({
-  productsAllByHashMap: productsSelector,
-})
-
-export default withRouter(connect(mapStateToProps)(CatalogContent))
+export default withRouter(CatalogContent)

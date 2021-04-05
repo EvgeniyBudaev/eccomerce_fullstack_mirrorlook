@@ -63,11 +63,9 @@ def get_categories(request):
 def get_products_by_category(request, category_slug):
   category = None
   products = Product.objects.all()
-  print(products)
   if category_slug:
     category = Category.objects.get(slug=category_slug)
-    productsAfterFilter = products.filter(id=category.id)
-    print(productsAfterFilter)
+    productsAfterFilter = products.filter(category_id=category.id)
   serializer = ProductSerializer(productsAfterFilter, many=True)
   return Response(serializer.data)
 
