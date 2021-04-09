@@ -89,7 +89,7 @@ function SimpleTabs(props) {
       {/*<TabPanel value={value} index={1}>*/}
       {/*  <Reviews productId={product.id} reviews={product.reviews} />*/}
       {/*</TabPanel>*/}
-      <TabPanel value={value} index={2}>
+      <TabPanel value={value} index={1}>
         <ProductCardDelivery />
       </TabPanel>
     </div>
