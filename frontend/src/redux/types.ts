@@ -3,6 +3,11 @@ import {
   LOAD_CATEGORIES_REQUEST,
   LOAD_CATEGORIES_SUCCESS
 } from "../constants/categoriesConstants"
+import {
+  LOAD_PRODUCT_DETAILS_FAILURE,
+  LOAD_PRODUCT_DETAILS_REQUEST,
+  LOAD_PRODUCT_DETAILS_SUCCESS
+} from "../constants/productConstants";
 
 
 export type IFailure = {
@@ -85,4 +90,19 @@ export interface IProduct {
   weight: number,
   weightWithoutFrame: number,
   width: number
+}
+
+export type LoadProductDetailsRequestType = {
+  type: typeof LOAD_PRODUCT_DETAILS_REQUEST,
+}
+
+export type LoadProductDetailsSuccessType = {
+  type: typeof LOAD_PRODUCT_DETAILS_SUCCESS,
+  payload: IProduct,
+  product_slug: string
+}
+
+export type LoadProductDetailsFailureType = {
+  type: typeof LOAD_PRODUCT_DETAILS_FAILURE,
+  payload: IFailure
 }
