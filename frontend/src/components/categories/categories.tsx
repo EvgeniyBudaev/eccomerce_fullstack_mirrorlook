@@ -35,8 +35,8 @@ const Categories: React.FC<CategoriesPropsType> = (props) => {
     <section className={styles.categories}>
       <div className={styles.container}>
         <div className={styles.inner}>
-          {categories.map(({id, name, image, slug}) => (
-            <NavLink to={ROUTES.CATEGORIES + slug} key={id}>
+          {categories.map(({id, name, image, category_slug}) => (
+            <NavLink to={ROUTES.CATEGORIES + category_slug + '/'} key={id}>
                 <CategoriesCard name={name} image={image}/>
             </NavLink>
           ))}

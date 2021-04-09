@@ -9,7 +9,7 @@ import {productsReducer} from "./productsReducer"
 const rootReducer = combineReducers({
     categories: categoriesReducer,
     products: productsReducer,
-    productDetail: productReducer,
+    productDetails: productReducer,
 })
 
 

@@ -12,7 +12,7 @@ export type IFailure = {
 export interface ICategory {
   id: number,
   name: string,
-  slug: string,
+  category_slug: string,
   image: string,
 }
 

@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class Category(models.Model):
   name = models.CharField(max_length=255, verbose_name='Имя категории')
   image = models.ImageField(null=True, blank=True)
-  slug = models.SlugField(max_length=255, unique=True, verbose_name='URL категории')
+  category_slug = models.SlugField(max_length=255, unique=True, verbose_name='URL категории')
   id = models.AutoField(primary_key=True, editable=False)
 
   def __str__(self):
@@ -17,7 +17,7 @@ class Product(models.Model):
   user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)  # При True Django сохранит пустое значение как NULL в базе данных. Значение по умолчанию – False.
   category_id = models.ForeignKey(Category, null=True, verbose_name='Категория', on_delete=models.CASCADE)
   name = models.CharField(max_length=200, null=True, blank=True, verbose_name='Наименование')
-  slug = models.SlugField(max_length=255, unique=True, verbose_name='URL продукта')
+  product_slug = models.SlugField(max_length=255, unique=True, verbose_name='URL продукта')
   image = models.ImageField(null=True, blank=True)
   description = models.TextField(null=True, blank=True, verbose_name='Описание')
   rating = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True, verbose_name='Рейтинг')

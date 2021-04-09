@@ -18,8 +18,8 @@ from .serializers import ProductSerializer, CategorySerializer
 def get_routes(request):
   routes = [
     '/api/categories/',
-    '/api/categories/<slug>/',
-    '/api/categories/<slug>/products/',
+    '/api/categories/<category_slug>/',
+    '/api/categories/<category_slug>/products/',
     '/api/categories/<slug:category_slug>/',
 
     '/api/products/',
@@ -68,7 +68,7 @@ def get_products_by_category(request, category_slug):
   category = None
   products = Product.objects.all()
   if category_slug:
-    category = Category.objects.get(slug=category_slug)
+    category = Category.objects.get(category_slug=category_slug)
     productsAfterFilter = products.filter(category_id=category.id)
   serializer = ProductSerializer(productsAfterFilter, many=True)
 
@@ -80,7 +80,7 @@ def get_product_by_category(request, category_slug, product_slug):
   product = None
 
   if category_slug and product_slug:
-    product = Product.objects.get(slug=product_slug)
+    product = Product.objects.get(product_slug=product_slug)
   serializer = ProductSerializer(product, many=False)
 
   return Response(serializer.data)

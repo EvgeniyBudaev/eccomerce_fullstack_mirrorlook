@@ -12,7 +12,8 @@ import {productSelector} from "../../redux/selectors"
 
 const Card = (props) => {
   console.log('[Card][props]', props)
-  const {product} = props
+  const {product, category_slug} = props
+  const {product_slug} = product
   const card = ClassNames(styles.card)
 
   if (!product) return null
@@ -22,7 +23,7 @@ const Card = (props) => {
       <div className={styles.wrapper}>
         <div className={styles.content}>
           <div className={styles.contentImg}>
-            <Link to={ROUTES.CATEGORIES}>
+            <Link to={ROUTES.CATEGORIES + category_slug + '/' + product_slug}>
               <img src={product.image} alt="" />
             </Link>
           </div>
