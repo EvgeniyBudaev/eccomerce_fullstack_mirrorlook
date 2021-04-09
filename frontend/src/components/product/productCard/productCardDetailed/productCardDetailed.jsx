@@ -1,4 +1,5 @@
 import React from 'react'
+
 import styles from './productCardDetailed.module.scss'
 import FullWidthTabs from './fullWidthTabs'
 

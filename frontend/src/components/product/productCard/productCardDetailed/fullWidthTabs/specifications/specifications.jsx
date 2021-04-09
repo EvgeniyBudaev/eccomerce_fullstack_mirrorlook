@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+
 import {ROUTES} from '../../../../../../routes'
 import styles from './specifications.module.scss'
 
@@ -13,17 +14,17 @@ const Specifications = (props) => {
     heightWithoutFrame,
     weightWithoutFrame,
     weight,
-    typeOfMounting,
-    typeOfInstallation,
+    type_of_mounting,
+    type_of_installation,
     facet,
     form,
     appointment,
-    materialMirror,
-    materialFrame,
-    colorMirror,
-    baseColor,
-    countryBrand,
-    countryManufacturer,
+    material_mirror,
+    material_frame,
+    color_mirror,
+    base_mirror,
+    country_brand,
+    country_manufacturer,
     manufacturer
   } = product
 
@@ -62,12 +63,12 @@ const Specifications = (props) => {
         <div className={styles.item}>
           <div className={styles.line}></div>
           <div className={styles.naming}><span>Тип навески</span></div>
-          <div className={styles.date}><span>{typeOfMounting}</span></div>
+          <div className={styles.date}><span>{type_of_mounting}</span></div>
         </div>
         <div className={styles.item}>
           <div className={styles.line}></div>
           <div className={styles.naming}><span>Тип установки</span></div>
-          <div className={styles.date}><span>{typeOfInstallation}</span></div>
+          <div className={styles.date}><span>{type_of_installation}</span></div>
         </div>
         <div className={styles.item}>
           <div className={styles.line}></div>
@@ -91,22 +92,22 @@ const Specifications = (props) => {
         <div className={styles.item}>
           <div className={styles.line}></div>
           <div className={styles.naming}><span>Материал зеркала</span></div>
-          <div className={styles.date}><span>{materialMirror}</span></div>
+          <div className={styles.date}><span>{material_mirror}</span></div>
         </div>
         <div className={styles.item}>
           <div className={styles.line}></div>
           <div className={styles.naming}><span>Материал рамы</span></div>
-          <div className={styles.date}><span>{materialFrame}</span></div>
+          <div className={styles.date}><span>{material_frame}</span></div>
         </div>
         <div className={styles.item}>
           <div className={styles.line}></div>
           <div className={styles.naming}><span>Цвет зеркала</span></div>
-          <div className={styles.date}><span>{colorMirror}</span></div>
+          <div className={styles.date}><span>{color_mirror}</span></div>
         </div>
         <div className={styles.item}>
           <div className={styles.line}></div>
           <div className={styles.naming}><span>Цвет основы</span></div>
-          <div className={styles.date}><span>{baseColor}</span></div>
+          <div className={styles.date}><span>{base_mirror}</span></div>
         </div>
       </div>
 
@@ -115,12 +116,12 @@ const Specifications = (props) => {
         <div className={styles.item}>
           <div className={styles.line}></div>
           <div className={styles.naming}><span>Страна бренда</span></div>
-          <div className={styles.date}><span>{countryBrand}</span></div>
+          <div className={styles.date}><span>{country_brand}</span></div>
         </div>
         <div className={styles.item}>
           <div className={styles.line}></div>
           <div className={styles.naming}><span>Страна производства</span></div>
-          <div className={styles.date}><span>{countryManufacturer}</span></div>
+          <div className={styles.date}><span>{country_manufacturer}</span></div>
         </div>
         <div className={styles.item}>
           <div className={styles.line}></div>

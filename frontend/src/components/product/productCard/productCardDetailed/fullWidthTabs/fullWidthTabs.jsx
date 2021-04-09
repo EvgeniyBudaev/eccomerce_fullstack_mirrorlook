@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Specifications from './specifications'
 import ProductCardDelivery from './productCardDelivery'
-import Reviews from './reviews'
+// import Reviews from './reviews'
 
 
 function TabPanel(props) {
@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
 function SimpleTabs(props) {
   //console.log('[SimpleTabs][props]', props)
   const {product} = props
-  const reviewsAmount = `Отзывы (${product.reviews.length})`
+  // const reviewsAmount = `Отзывы (${product.reviews.length})`
 
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
@@ -79,16 +79,16 @@ function SimpleTabs(props) {
       <AppBar position="static">
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
           <Tab label="Характеристики" {...a11yProps(0)} />
-          <Tab label={reviewsAmount} {...a11yProps(1)} />
+          {/*<Tab label={reviewsAmount} {...a11yProps(1)} />*/}
           <Tab label="Доставка и оплата" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
         <Specifications product={product} />
       </TabPanel>
-      <TabPanel value={value} index={1}>
-        <Reviews productId={product.id} reviews={product.reviews} />
-      </TabPanel>
+      {/*<TabPanel value={value} index={1}>*/}
+      {/*  <Reviews productId={product.id} reviews={product.reviews} />*/}
+      {/*</TabPanel>*/}
       <TabPanel value={value} index={2}>
         <ProductCardDelivery />
       </TabPanel>

@@ -20,7 +20,7 @@ class ProductCardSlider extends Component {
   }
 
   render() {
-    const {images, images2, images3, images4, images5} = this.props.product
+    const {image, product_photo1, product_photo2, product_photo3, product_photo4} = this.props.product
 
     const settingsFor = {
       arrows: false,
@@ -68,10 +68,10 @@ class ProductCardSlider extends Component {
             {...settingsFor}
           >
             <div className={styles.item}>
-              <img src={images} alt="images" />
+              <img src={image} alt="images" />
             </div>
             <div className={styles.item}>
-              <img src={images2} alt="images" />
+              <img src={product_photo1} alt="images" />
             </div>
           </Slider>
 
@@ -82,13 +82,13 @@ class ProductCardSlider extends Component {
             {...settingsNav}
           >
             <div className={styles.navItem}>
-              <img src={images3} alt="images" className={styles.navItemImg} />
+              <img src={product_photo2} alt="images" className={styles.navItemImg} />
             </div>
             <div className={styles.navItem}>
-              <img src={images4} alt="images" className={styles.navItemImg} />
+              <img src={product_photo3} alt="images" className={styles.navItemImg} />
             </div>
             <div className={styles.navItem}>
-              <img src={images5} alt="images" className={styles.navItemImg} />
+              <img src={product_photo4} alt="images" className={styles.navItemImg} />
             </div>
           </Slider>
         </div>

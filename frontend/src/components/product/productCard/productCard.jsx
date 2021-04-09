@@ -3,8 +3,8 @@ import React from 'react'
 import styles from './productCard.module.scss'
 import ProductCardDescription from './productCardDescription'
 // import ProductCardData from './productCardData'
-// import ProductCardDetailed from './productCardDetailed'
-// import ProductCardSlider from './productCardSlider'
+import ProductCardDetailed from './productCardDetailed'
+import ProductCardSlider from './productCardSlider'
 
 
 const ProductCard = (props) => {
@@ -20,12 +20,12 @@ const ProductCard = (props) => {
           <h2 className={styles.productName}>{name}</h2>
           <div className={styles.inner}>
             <ProductCardDescription description={description} />
-            {/*<ProductCardSlider product={product} />*/}
+            <ProductCardSlider product={product} />
             {/*<ProductCardData product={product} />*/}
           </div>
         </div>
       </section>
-      {/*<ProductCardDetailed product={product} />*/}
+      <ProductCardDetailed product={product} />
     </>
   )
 }
