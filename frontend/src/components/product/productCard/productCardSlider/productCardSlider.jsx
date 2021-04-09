@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Slider from 'react-slick'
+
 import styles from './productCardSlider.module.scss'
 
 class ProductCardSlider extends Component {
