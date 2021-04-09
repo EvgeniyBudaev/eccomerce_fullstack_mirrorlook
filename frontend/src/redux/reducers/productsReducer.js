@@ -16,7 +16,7 @@ const initialState = {
 const productsReducer = (state = initialState, action) =>
   produce(state, (draft) => {
     const {type, payload, categoryId, category_slug} = action
-    console.log('[productsReducer][action]', action)
+    // console.log('[productsReducer][action]', action)
 
     switch (type) {
       case LOAD_PRODUCTS_REQUEST: {

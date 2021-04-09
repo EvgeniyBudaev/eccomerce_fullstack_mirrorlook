@@ -1,30 +1,22 @@
 import React, { useEffect } from 'react'
-import { useParams, useLocation, useRouteMatch, useHistory } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
 import Loader from "../loader"
 import { fetchProductDetail } from "../../redux/actions/productActions"
+import { productByIdSelector, productLoadedSelector, productLoadingSelector } from "../../redux/selectors"
 
 
 const ProductDetail = (props) => {
-  console.log('[Product][props]', props)
-  // const {match, fetchProductDetail, loading, loaded} = props
-  // const id = match.params.product_slug
-
-  const match = useRouteMatch()
-  const {category_slug, product_slug} = match
-  console.log('match', match)
+  console.log('[ProductDetail][props]', props)
+  const {fetchProductDetail, category_slug, product_slug, loading, loaded, product} = props
 
     useEffect(() => {
-    fetchProductDetail(category_slug, product_slug)
-  }, [fetchProductDetail])
+      if (!loading && !loaded) fetchProductDetail(category_slug, product_slug)
+  }, [fetchProductDetail, loading, loaded, category_slug, product_slug])
 
-  // useEffect(() => {
-  //   if (!loading && !loaded) fetchProductDetail(product_slug)
-  // }, [fetchProductDetail, loading, loaded, product_slug])
 
-  // if (loading || !loaded) return <Loader />
+  if (loading || !loaded) return <Loader />
 
   return (
     <>
@@ -37,7 +29,9 @@ const ProductDetail = (props) => {
 
 
 export default connect(  createStructuredSelector({
-
+  product: productByIdSelector,
+  loading: productLoadingSelector,
+  loaded: productLoadedSelector,
 }), {fetchProductDetail})(ProductDetail)
 
-// export default ProductDetail
+

@@ -25,3 +25,10 @@ export const productsLoadedSelector = (state, props) =>
 
 
 export const productSelector = getById(productsSelector)
+
+
+export const productLoadingSelector = (state, props) =>
+  state.productDetails.loading[props.product_slug]
+export const productLoadedSelector = (state, props) =>
+  state.productDetails.loaded[props.product_slug]
+export const productByIdSelector = (state, props) => state.productDetails.entities[props.product_slug]

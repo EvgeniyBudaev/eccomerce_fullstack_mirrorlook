@@ -14,8 +14,8 @@ const CatalogContent = (props) => {
 
   const categories = useSelector(categoriesListSelector)
   const {category_slug} = match.params
-  console.log('category_slug', category_slug)
-    console.log('[CatalogContent][categories]', categories)
+
+  // console.log('[CatalogContent][categories]', categories)
   const category = categories.find((category) => category.category_slug === category_slug)
 
 

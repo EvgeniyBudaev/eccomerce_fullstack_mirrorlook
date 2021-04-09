@@ -14,7 +14,7 @@ const App: React.FC = () => {
   return (
     <MainLayout>
       <Switch>
-        <Route path={ROUTES.CATEGORIES + ':category_slug/' + ':product_slug'} component={ProductDetailsPage} />
+        <Route path={ROUTES.CATEGORIES + ':category_slug/' + ':product_slug'} component={ProductDetailsPage} exact/>
         <Route path={ROUTES.CATEGORIES + ':category_slug/'} component={CatalogPage} exact />
         <Route path={ROUTES.CATEGORIES} component={CategoriesPage} exact />
         <Route path={ROUTES.ABOUT} component={AboutPage} />
