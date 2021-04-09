@@ -106,3 +106,5 @@ export type LoadProductDetailsFailureType = {
   type: typeof LOAD_PRODUCT_DETAILS_FAILURE,
   payload: IFailure
 }
+
+export type ProductDetailsTypes = LoadProductDetailsRequestType | LoadProductDetailsSuccessType | LoadProductDetailsFailureType
