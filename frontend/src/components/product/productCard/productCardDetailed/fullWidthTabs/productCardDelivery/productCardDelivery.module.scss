@@ -1,0 +1,22 @@
+.productCardDelivery {}
+
+.descriptionInfoList {
+  li {
+    margin-top: 12px;
+
+    span {
+      color: var(--beige);
+    }
+
+    .descriptionCity {
+      text-decoration: underline;
+    }
+  }
+  .descriptionPay {
+    display: flex;
+    align-items: center;
+    a + a {
+      margin-left: 15px;
+    }
+  }
+}

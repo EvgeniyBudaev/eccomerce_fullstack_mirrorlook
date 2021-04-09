@@ -5,6 +5,7 @@ import { createStructuredSelector } from 'reselect'
 import Loader from "../loader"
 import { fetchProductDetail } from "../../redux/actions/productActions"
 import { productByIdSelector, productLoadedSelector, productLoadingSelector } from "../../redux/selectors"
+import ProductCard from "../product/productCard"
 
 
 const ProductDetail = (props) => {
@@ -20,8 +21,7 @@ const ProductDetail = (props) => {
 
   return (
     <>
-      <h1>Карточка продукта</h1>
-      {/*<ProductCard product={product} />*/}
+      <ProductCard product={product} />
     </>
   )
 }

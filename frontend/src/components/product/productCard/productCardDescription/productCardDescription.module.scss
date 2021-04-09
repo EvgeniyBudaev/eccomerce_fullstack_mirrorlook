@@ -1,0 +1,46 @@
+.description {
+  max-width: 322px;
+  width: 100%;
+}
+
+.descriptionText {
+  p {
+    margin-bottom: 30px;
+  }
+}
+
+.descriptionInfo {
+}
+
+.descriptionInfoFavorites {
+  a {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    width: 160px;
+    img {
+      margin-right: 10px;
+    }
+  }
+}
+
+.descriptionInfoList {
+  li {
+    margin-top: 12px;
+
+    span {
+      color: var(--beige);
+    }
+
+    .descriptionCity {
+      text-decoration: underline;
+    }
+  }
+  .descriptionPay {
+    display: flex;
+    align-items: center;
+    a + a {
+      margin-left: 15px;
+    }
+  }
+}

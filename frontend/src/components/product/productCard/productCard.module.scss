@@ -1,0 +1,43 @@
+.productCard {
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+.container {
+  /*ширина контейнера чистая 1170px*/
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  position: relative;
+  & a {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+.productName {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+}
+
+

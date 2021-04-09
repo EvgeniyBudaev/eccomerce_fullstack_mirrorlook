@@ -1,0 +1,103 @@
+.data {
+  max-width: 276px;
+  width: 100%;
+}
+.dataArticle {
+  //font-family: "Montserrat-Regular";
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+.dataList {
+  display: flex;
+  justify-content: space-between;
+}
+.dataListItem {
+  li {
+    margin-bottom: 15px;
+  }
+  &.item1 {
+    width: 60%;
+  }
+  &.item2 {
+    width: 40%;
+  }
+}
+.dataAvailability {
+  color: var(--beige);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.dataOrderPrice {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 22px;
+}
+.dataOrderQuantity {
+  display: flex;
+  justify-content: center;
+  span {
+    padding-top: 3px;
+  }
+}
+
+.quantityNum {
+  width: 75px;
+  padding-left: 22px;
+  padding-right: 28px;
+  margin-left: 10px;
+  position: relative;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .quantityBtn {
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    outline: none;
+    &.quantityLeft {
+      left: 0;
+    }
+    &.quantityRight {
+      right: 0;
+    }
+  }
+  input {
+    width: 25px;
+    height: 25px;
+    border: 1px solid var(--beige);
+    text-align: center;
+    font-size: 12px;
+    outline: none;
+  }
+}
+.dataOrderBtn {
+  margin-top: 20px;
+  text-align: center;
+  button {
+    //font-family: "Montserrat-Medium";
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    padding: 20px 30px;
+    max-width: 100%;
+    width: 100%;
+    border: none;
+    background-color: var(--beige);
+    text-align: center;
+    color: var(--white);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: var(--beigeH);
+  }
+}
+
+
