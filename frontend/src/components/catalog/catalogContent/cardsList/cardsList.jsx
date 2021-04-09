@@ -10,7 +10,7 @@ import {
 } from '../../../../redux/selectors'
 import Loader from '../../../loader'
 
-import {fetchProducts} from "../../../../redux/actions/productsAction"
+import {fetchProducts} from "../../../../redux/actions/productsActions"
 import styles from './cardsList.module.scss'
 import Card from "../../../card"
 

@@ -6,7 +6,7 @@ import styles from './categories.module.scss'
 import CategoriesCard from './categoriesCard'
 import LineInfo from '../lineInfo'
 import { ROUTES } from '../../routes'
-import { fetchCategories } from '../../redux/actions/categoriesAction'
+import { fetchCategories } from '../../redux/actions/categoriesActions'
 import {
   categoriesListSelector,
   categoriesLoadedSelector,
