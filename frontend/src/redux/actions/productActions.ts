@@ -1,12 +1,14 @@
 import axios from 'axios'
+import {Dispatch} from "redux"
 
 import {
     LOAD_PRODUCT_DETAILS_FAILURE,
     LOAD_PRODUCT_DETAILS_REQUEST, LOAD_PRODUCT_DETAILS_SUCCESS,
 } from "../../constants/productConstants"
+import {ProductDetailsTypes} from "../types"
 
 
-const fetchProductDetail = (category_slug, product_slug) => async (dispatch) => {
+const fetchProductDetail = (category_slug: string, product_slug: string) => async (dispatch: Dispatch<ProductDetailsTypes>) => {
     try {
         dispatch({type: LOAD_PRODUCT_DETAILS_REQUEST })
         // const response = await axios.get(`/api/categories/${category_slug}/${product_slug}`)
