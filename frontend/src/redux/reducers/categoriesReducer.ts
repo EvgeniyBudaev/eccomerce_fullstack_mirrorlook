@@ -15,6 +15,8 @@ const initialState = {
 export type InitialStateCategoriesType = typeof initialState
 type Types = InitialStateCategoriesType & CategoriesTypes
 
+
+// { [categoryId]: category }
 const categoriesReducer = (state = initialState, action: Types):InitialStateCategoriesType => {
   const {type, payload, error} = action
 

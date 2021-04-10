@@ -33,16 +33,10 @@ const initialState: IStateProduct  = {
   entities: {},
 }
 
-export type InitialStateProductType = typeof initialState
-type Types = InitialStateProductType & ProductDetailsTypes
 
-
-const productReducer = (state = initialState, action: ProductDetailsTypes ): InitialStateProductType  =>
+const productReducer = (state = initialState, action: ProductDetailsTypes ): IStateProduct  =>
   produce(state, (draft) => {
-    // const {type, productId, product, error, reviewId, payload} = action
-    //console.log('[productReducer][action]', action)
-    console.log('[productReducer][action]', action)
-    // const {type, payload, product_slug} = action
+    // console.log('[productReducer][action]', action)
 
     switch(action.type) {
       case LOAD_PRODUCT_DETAILS_REQUEST: {
@@ -68,7 +62,6 @@ const productReducer = (state = initialState, action: ProductDetailsTypes ): Ini
         return
     }
   })
-
 
 
 export {productReducer}
