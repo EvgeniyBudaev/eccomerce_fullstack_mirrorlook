@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router'
-import {createStructuredSelector} from 'reselect'
+import {withRouter, RouteComponentProps} from 'react-router'
 
 import {
   productsByCategorySelector,
@@ -13,10 +12,20 @@ import Loader from '../../../loader'
 import {fetchProducts} from "../../../../redux/actions/productsActions"
 import styles from './cardsList.module.scss'
 import Card from "../../../card"
+import {RootStateType} from "../../../../redux/reducers"
+import {
+  MapStatePropsCardsListType,
+  MapDispatchPropsCardsListType,
+  PropCardsListTypes,
+  OwnPropsCardsListCategorySlugType} from "./types"
 
 
 
-const CardsList = (props) => {
+type OwnPropsType = OwnPropsCardsListCategorySlugType & RouteComponentProps
+
+export type CardsListPopsType = MapStatePropsCardsListType & MapDispatchPropsCardsListType & PropCardsListTypes
+
+const CardsList: React.FC<CardsListPopsType> = (props) => {
   console.log('[CardsList][props]', props)
   const { fetchProducts, products, loading, loaded, category_slug } = props
 
@@ -44,7 +53,7 @@ const CardsList = (props) => {
 }
 
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state: RootStateType, ownProps: OwnPropsType ): MapStatePropsCardsListType => {
   return {
     loading: productsLoadingSelector(state, ownProps),
     loaded: productsLoadedSelector(state, ownProps),
