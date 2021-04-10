@@ -18,7 +18,7 @@ import Card from "../../../card"
 
 const CardsList = (props) => {
   console.log('[CardsList][props]', props)
-  const { fetchProducts, categoryId, products, loading, loaded, category_slug } = props
+  const { fetchProducts, products, loading, loaded, category_slug } = props
 
   let allProductsByCategory
   if (products) allProductsByCategory = Object.values(products)
@@ -26,9 +26,9 @@ const CardsList = (props) => {
 
   useEffect(() => {
     if (!loading && !loaded) {
-      fetchProducts(categoryId, category_slug);
+      fetchProducts(category_slug);
     }
-  }, [fetchProducts, loading, loaded, categoryId, category_slug])
+  }, [fetchProducts, loading, loaded, category_slug])
 
 
     if (loading) {
@@ -39,7 +39,7 @@ const CardsList = (props) => {
     return (
       <ul className={styles.cardsList}>
         {/*{arrayKeysProducts.map(id => <Card key={id} id={id} />)}*/}
-        {allProductsByCategory && allProductsByCategory.map(product => <Card key={product.id} product={product} category_slug={category_slug} categoryId={categoryId} />)}
+        {allProductsByCategory && allProductsByCategory.map(product => <Card key={product.id} product={product} category_slug={category_slug} />)}
       </ul>
     )
 }

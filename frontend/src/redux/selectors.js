@@ -18,9 +18,9 @@ export const categoriesListSelector = createSelector(
 export const productsSelector = (state) => state.products.entities
 export const productsByCategorySelector = (state, props) => state.products.entities[props.match.params.category_slug]
 export const productsLoadingSelector = (state, props) =>
-  state.products.loading[props.categoryId]
+  state.products.loading[props.category_slug]
 export const productsLoadedSelector = (state, props) =>
-  state.products.loaded[props.categoryId]
+  state.products.loaded[props.category_slug]
 
 
 

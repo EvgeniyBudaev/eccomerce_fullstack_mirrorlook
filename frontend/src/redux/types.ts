@@ -134,20 +134,19 @@ export type ProductDetailsTypes = LoadProductDetailsRequestType | LoadProductDet
 // Продукты
 export type LoadProductsRequestType = {
   type: typeof LOAD_PRODUCTS_REQUEST,
-  categoryId: number
+  category_slug: string
 }
 
 export type LoadProductsSuccessType = {
   type: typeof LOAD_PRODUCTS_SUCCESS,
   payload: Array<IProduct>,
-  categoryId: number,
   category_slug: string
 }
 
 export type LoadProductsFailureType = {
   type: typeof LOAD_PRODUCTS_FAILURE,
   payload: IFailure,
-  categoryId: number
+  category_slug: string
 }
 
 export type ProductsTypes = LoadProductsRequestType | LoadProductsSuccessType | LoadProductsFailureType
