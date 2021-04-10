@@ -7,11 +7,16 @@ import ClassNames from 'classnames'
 import styles from './card.module.scss'
 import {ROUTES} from '../../routes'
 import {productSelector} from "../../redux/selectors"
+import {IProduct} from "../../redux/types"
 
 
+interface ICard {
+  product: IProduct,
+  category_slug: string
+}
 
-const Card = (props) => {
-  console.log('[Card][props]', props)
+const Card: React.FC<ICard> = (props) => {
+  // console.log('[Card][props]', props)
   const {product, category_slug} = props
   const {product_slug} = product
   const card = ClassNames(styles.card)
