@@ -6,8 +6,7 @@ import {ROUTES} from '../../routes'
 import AboutPage from '../about'
 import CategoriesPage from "../pages/categoriesPage"
 import CatalogPage from "../pages/catalogPage"
-import ProductDetailsPage from "../pages/productDetailsPage/productDetailPage"
-
+import ProductDetailsPage from "../pages/productDetailsPage"
 
 
 const App: React.FC = () => {

@@ -4,7 +4,7 @@ import styles from './catalog.module.scss'
 import CatalogContent from './catalogContent'
 
 
-const Catalog = () => {
+const Catalog: React.FC = () => {
   return (
     <section className={styles.catalog}>
       <div className={styles.container}>
