@@ -35,7 +35,6 @@ const CardsList = (props) => {
       return <Loader />;
     }
 
-
     return (
       <ul className={styles.cardsList}>
         {/*{arrayKeysProducts.map(id => <Card key={id} id={id} />)}*/}
@@ -44,12 +43,17 @@ const CardsList = (props) => {
     )
 }
 
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    loading: productsLoadingSelector(state, ownProps),
+    loaded: productsLoadedSelector(state, ownProps),
+    products: productsByCategorySelector(state, ownProps),
+  }
+}
+
 export default withRouter(connect(
-  createStructuredSelector({
-    loading: productsLoadingSelector,
-    loaded: productsLoadedSelector,
-    products: productsByCategorySelector,
-  }),
+  mapStateToProps,
   {fetchProducts}
 )(CardsList))
 
