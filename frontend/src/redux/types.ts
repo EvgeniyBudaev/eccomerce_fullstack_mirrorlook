@@ -10,10 +10,20 @@ import {
 } from "../constants/productConstants";
 
 
+export interface ILoading {
+  [product_slug: string]: boolean
+}
+
+export interface ILoaded {
+  [product_slug: string]: boolean
+}
+
 export type IFailure = {
   error: Error
 }
 
+
+// Категории
 export interface ICategory {
   id: number,
   name: string,
@@ -41,7 +51,7 @@ export type CategoriesPropsType = MapStatePropsCategoriesType & MapDispatchProps
 export type CategoriesTypes = LoadCategoriesRequestType | LoadCategoriesSuccessType | LoadCategoriesFailureType
 
 export type LoadCategoriesRequestType = {
-  type: typeof LOAD_CATEGORIES_REQUEST
+  type: typeof LOAD_CATEGORIES_REQUEST,
 }
 
 export type LoadCategoriesSuccessType = {
@@ -54,6 +64,8 @@ export type LoadCategoriesFailureType = {
   error: IFailure,
 }
 
+
+// Детали продукта
 export interface IProduct {
   appointment: string,
   base_mirror: string,
@@ -94,6 +106,7 @@ export interface IProduct {
 
 export type LoadProductDetailsRequestType = {
   type: typeof LOAD_PRODUCT_DETAILS_REQUEST,
+  product_slug: string
 }
 
 export type LoadProductDetailsSuccessType = {
@@ -104,7 +117,11 @@ export type LoadProductDetailsSuccessType = {
 
 export type LoadProductDetailsFailureType = {
   type: typeof LOAD_PRODUCT_DETAILS_FAILURE,
-  payload: IFailure
+  payload: IFailure,
+  product_slug: string
 }
 
 export type ProductDetailsTypes = LoadProductDetailsRequestType | LoadProductDetailsSuccessType | LoadProductDetailsFailureType
+
+
+
