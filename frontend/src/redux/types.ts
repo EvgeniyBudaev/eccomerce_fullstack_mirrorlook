@@ -8,6 +8,11 @@ import {
   LOAD_PRODUCT_DETAILS_REQUEST,
   LOAD_PRODUCT_DETAILS_SUCCESS
 } from "../constants/productConstants";
+import {
+  LOAD_PRODUCTS_FAILURE,
+  LOAD_PRODUCTS_REQUEST,
+  LOAD_PRODUCTS_SUCCESS
+} from "../constants/productsConstants";
 
 
 export interface ILoading {
@@ -63,6 +68,7 @@ export type LoadCategoriesFailureType = {
   type: typeof LOAD_CATEGORIES_FAILURE,
   error: IFailure,
 }
+
 
 
 // Детали продукта
@@ -122,6 +128,29 @@ export type LoadProductDetailsFailureType = {
 }
 
 export type ProductDetailsTypes = LoadProductDetailsRequestType | LoadProductDetailsSuccessType | LoadProductDetailsFailureType
+
+
+
+// Продукты
+export type LoadProductsRequestType = {
+  type: typeof LOAD_PRODUCTS_REQUEST,
+  categoryId: number
+}
+
+export type LoadProductsSuccessType = {
+  type: typeof LOAD_PRODUCTS_SUCCESS,
+  payload: Array<IProduct>,
+  categoryId: number,
+  category_slug: string
+}
+
+export type LoadProductsFailureType = {
+  type: typeof LOAD_PRODUCTS_FAILURE,
+  payload: IFailure,
+  categoryId: number
+}
+
+export type ProductsTypes = LoadProductsRequestType | LoadProductsSuccessType | LoadProductsFailureType
 
 
 
