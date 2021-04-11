@@ -3,7 +3,7 @@ import React from 'react'
 import Catalog from "../../catalog"
 
 
-const CatalogPage = () => {
+const CatalogPage: React.FC = () => {
   return (
     <>
       <Catalog />

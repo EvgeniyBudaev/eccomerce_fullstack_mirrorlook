@@ -4,8 +4,13 @@ import { useRouteMatch } from 'react-router-dom'
 import ProductDetail from "../../productDetail"
 
 
-const ProductDetailsPage = () => {
-  const match = useRouteMatch()
+export interface MatchParams {
+    category_slug: string,
+    product_slug: string
+}
+
+const ProductDetailsPage: React.FC = () => {
+  const match = useRouteMatch<MatchParams>()
   const {category_slug, product_slug} = match.params
 
   return (
