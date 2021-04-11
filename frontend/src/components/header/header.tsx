@@ -7,9 +7,10 @@ import Logo from "./logo"
 import HeaderMenuBottom from "./headerMenuBottom"
 import styles from './header.module.scss'
 import HeaderCategories from "./headerCategories"
+import HeaderMenuTop from "./headerMenuTop"
 
 
-const Header = () => {
+const Header: React.FC = () => {
 
     const headerStyles = Classnames(
     styles.header,
@@ -25,7 +26,7 @@ const Header = () => {
                 <Logo />
               </div>
               <div className={styles.menu} data-headermenu="">
-                {/*<HeaderMenuTop />*/}
+                <HeaderMenuTop />
                 <HeaderMenuBottom />
               </div>
             </div>
