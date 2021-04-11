@@ -5,8 +5,9 @@ import {RouteComponentProps, withRouter} from "react-router"
 import Loader from "../../loader"
 import { fetchProductDetail } from "../../../redux/actions/productActions"
 import {
-  productByIdSelector, productsByCategorySelector,
-  productsLoadedSelector,
+  productByIdSelector,
+  productLoadedSelector,
+  productLoadingSelector,
 } from "../../../redux/selectors"
 import ProductCard from "../productCard"
 import {RootStateType} from "../../../redux/reducers"
@@ -42,9 +43,9 @@ const ProductDetail: React.FC<ProductDetailPropsType> = (props) => {
 
 const mapStateToProps = (state: RootStateType, ownProps: OwnPropsType ): MapStatePropsProductDetailType => {
   return {
-    loading: productByIdSelector(state, ownProps),
-    loaded: productsLoadedSelector(state, ownProps),
-    product: productsByCategorySelector(state, ownProps),
+    loading: productLoadingSelector(state, ownProps),
+    loaded: productLoadedSelector(state, ownProps),
+    product: productByIdSelector(state, ownProps),
   }
 }
 

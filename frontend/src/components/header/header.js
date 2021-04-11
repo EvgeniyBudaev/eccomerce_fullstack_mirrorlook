@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import Classnames from 'classnames'
 
 import EmptyBlockToHomePage from "./empty"
@@ -7,6 +6,7 @@ import Hamburger from "../hamburger"
 import Logo from "./logo"
 import HeaderMenuBottom from "./headerMenuBottom"
 import styles from './header.module.scss'
+import HeaderCategories from "./headerCategories"
 
 
 const Header = () => {
@@ -17,7 +17,7 @@ const Header = () => {
 
     return (
       <>
-        <div className={headerStyles} data-type="header">
+        <div className={headerStyles}>
           <div className={styles.container}>
             <div className={styles.innerMenuAndLogo}>
               <div className={styles.logoAndHamburger}>
@@ -29,7 +29,7 @@ const Header = () => {
                 <HeaderMenuBottom />
               </div>
             </div>
-            {/*<HeaderCategories />*/}
+            <HeaderCategories />
           </div>
         </div>
         <EmptyBlockToHomePage />

@@ -2,9 +2,9 @@ import {IProduct} from "../../../redux/types";
 
 
 export type MapStatePropsProductDetailType = {
-     product: IProduct,
-     loading: boolean,
-    loaded: boolean,
+    product: IProduct,
+    loading: boolean,
+    loaded: boolean
 }
 
 export type MapDispatchPropsProductDetailType = {

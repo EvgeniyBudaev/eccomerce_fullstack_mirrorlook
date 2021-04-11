@@ -50,8 +50,7 @@ export type MapDispatchPropsCategoriesType = {
   fetchCategories: () => void,
 }
 
-export type CategoriesPropsType = MapStatePropsCategoriesType & MapDispatchPropsCategoriesType
-
+export type HeaderCategoriesPropsType = MapStatePropsCategoriesType & MapDispatchPropsCategoriesType
 
 export type CategoriesTypes = LoadCategoriesRequestType | LoadCategoriesSuccessType | LoadCategoriesFailureType
 
