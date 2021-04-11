@@ -26,12 +26,11 @@ type OwnPropsType = OwnPropsCardsListCategorySlugType & RouteComponentProps
 export type CardsListPopsType = MapStatePropsCardsListType & MapDispatchPropsCardsListType & PropCardsListTypes
 
 const CardsList: React.FC<CardsListPopsType> = (props) => {
-  console.log('[CardsList][props]', props)
+  // console.log('[CardsList][props]', props)
   const { fetchProducts, products, loading, loaded, category_slug } = props
 
   let allProductsByCategory
   if (products) allProductsByCategory = Object.values(products)
-  // console.log('allProductsByCategory', allProductsByCategory)
 
   useEffect(() => {
     if (!loading && !loaded) {

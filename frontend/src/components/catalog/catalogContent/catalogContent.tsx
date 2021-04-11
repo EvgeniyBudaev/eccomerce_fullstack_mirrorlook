@@ -1,11 +1,16 @@
 import React from 'react'
-import {withRouter} from "react-router"
+import {RouteComponentProps, withRouter} from "react-router"
 
 import styles from './catalogContent.module.scss'
 import CardsList from "./cardsList"
 
 
-const CatalogContent = (props) => {
+
+type TParams = {
+    category_slug: string;
+}
+
+const CatalogContent: (props: RouteComponentProps<TParams>) => JSX.Element = (props: RouteComponentProps<TParams>) => {
   // console.log('[CatalogContent][props]', props)
 
   const {category_slug} = props.match.params
