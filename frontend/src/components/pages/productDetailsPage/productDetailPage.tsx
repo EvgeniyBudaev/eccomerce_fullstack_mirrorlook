@@ -1,7 +1,8 @@
 import React from 'react'
 import { useRouteMatch } from 'react-router-dom'
+import {RouteComponentProps, withRouter} from 'react-router'
 
-import ProductDetail from "../../productDetail"
+import ProductDetail from "../../product/productDetail"
 
 
 export interface MatchParams {
@@ -9,9 +10,14 @@ export interface MatchParams {
     product_slug: string
 }
 
-const ProductDetailsPage: React.FC = () => {
-  const match = useRouteMatch<MatchParams>()
-  const {category_slug, product_slug} = match.params
+type TParams = {
+    category_slug: string,
+    product_slug: string
+}
+
+const ProductDetailsPage: (props: RouteComponentProps<TParams>) => JSX.Element = () => {
+    const match = useRouteMatch<MatchParams>()
+    const {category_slug, product_slug} = match.params
 
   return (
     <>
@@ -20,5 +26,5 @@ const ProductDetailsPage: React.FC = () => {
   )
 }
 
-export default ProductDetailsPage
+export default withRouter(ProductDetailsPage)
 
