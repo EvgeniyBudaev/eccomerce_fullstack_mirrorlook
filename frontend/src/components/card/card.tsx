@@ -1,13 +1,15 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {connect} from 'react-redux'
+import {connect, ConnectedProps} from 'react-redux'
 import {createStructuredSelector} from 'reselect'
 import ClassNames from 'classnames'
 
 import styles from './card.module.scss'
 import {ROUTES} from '../../routes'
 import {productSelector} from "../../redux/selectors"
-import {IProduct} from "../../redux/types"
+import {IProduct, ProductIncrementType} from "../../redux/types"
+import {productIncrement} from '../../redux/actions/productActions'
+
 
 
 interface ICard {
@@ -15,9 +17,17 @@ interface ICard {
   category_slug: string
 }
 
-const Card: React.FC<ICard> = (props) => {
+export type CardTypes = ICard & DispatchPropsType
+
+const connector = connect(null, {productIncrement})
+type PropsFromRedux = ConnectedProps<typeof connector>
+type DispatchPropsType = PropsFromRedux & {
+  productIncrement: ProductIncrementType,
+}
+
+const Card: React.FC<CardTypes> = (props) => {
   // console.log('[Card][props]', props)
-  const {product, category_slug} = props
+  const {product, category_slug, productIncrement} = props
   const {product_slug} = product
   const card = ClassNames(styles.card)
 
@@ -63,7 +73,7 @@ const Card: React.FC<ICard> = (props) => {
           <div className={styles.footerBottom}>
             <div className={styles.footerBottomNum}>{product.price} ₽</div>
             <div className={styles.footerBottomStatus}>В наличии</div>
-            <button className={styles.footerBottomBtn}>В корзину</button>
+            <button className={styles.footerBottomBtn} onClick={() => productIncrement(product.product_slug)}>В корзину</button>
             {/*<div>{amount || 0}</div>*/}
           </div>
         </div>
@@ -73,5 +83,4 @@ const Card: React.FC<ICard> = (props) => {
 }
 
 
-
-export default Card
+export default connector(Card)

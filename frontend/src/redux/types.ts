@@ -6,13 +6,16 @@ import {
 import {
   LOAD_PRODUCT_DETAILS_FAILURE,
   LOAD_PRODUCT_DETAILS_REQUEST,
-  LOAD_PRODUCT_DETAILS_SUCCESS
-} from "../constants/productConstants";
+  LOAD_PRODUCT_DETAILS_SUCCESS,
+  PRODUCT_DECREMENT,
+  PRODUCT_INCREMENT,
+  PRODUCT_REMOVE
+} from "../constants/productConstants"
 import {
   LOAD_PRODUCTS_FAILURE,
   LOAD_PRODUCTS_REQUEST,
   LOAD_PRODUCTS_SUCCESS
-} from "../constants/productsConstants";
+} from "../constants/productsConstants"
 
 
 export interface ILoading {
@@ -151,4 +154,29 @@ export type LoadProductsFailureType = {
 export type ProductsTypes = LoadProductsRequestType | LoadProductsSuccessType | LoadProductsFailureType
 
 
+// Decrement, Increment, Remove product
+type ProductIncrementActionPayloadType = {
+  product_slug: string,
+}
+export type ProductIncrementActionType = {
+  type: typeof PRODUCT_INCREMENT,
+  payload: ProductIncrementActionPayloadType
+}
+export type ProductIncrementType = (product_slug: string) => ProductIncrementActionType
 
+
+type ProductDecrementActionPayloadType = {
+  product_slug: string
+}
+type ProductDecrementActionType = {
+  type: typeof PRODUCT_DECREMENT,
+  payload: ProductDecrementActionPayloadType
+}
+export type ProductDecrementType = (product_slug: string) => ProductDecrementActionType
+
+
+type ProductRemoveActionType = {
+  type: typeof PRODUCT_REMOVE,
+  payload: {product_slug: string}
+}
+export type ProductRemoveType = (product_slug: string) => ProductRemoveActionType

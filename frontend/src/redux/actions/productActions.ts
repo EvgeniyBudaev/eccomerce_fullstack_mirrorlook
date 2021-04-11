@@ -3,9 +3,16 @@ import { Dispatch } from "redux"
 
 import {
     LOAD_PRODUCT_DETAILS_FAILURE,
-    LOAD_PRODUCT_DETAILS_REQUEST, LOAD_PRODUCT_DETAILS_SUCCESS,
+    LOAD_PRODUCT_DETAILS_REQUEST,
+    LOAD_PRODUCT_DETAILS_SUCCESS,
+    PRODUCT_DECREMENT, PRODUCT_INCREMENT,
+    PRODUCT_REMOVE,
 } from "../../constants/productConstants"
-import { ProductDetailsTypes } from "../types"
+import {
+    ProductDecrementType,
+    ProductDetailsTypes,
+    ProductIncrementType, ProductRemoveType
+} from "../types"
 
 
 const fetchProductDetail = (category_slug: string, product_slug: string) => async (dispatch: Dispatch<ProductDetailsTypes>) => {
@@ -23,6 +30,12 @@ const fetchProductDetail = (category_slug: string, product_slug: string) => asyn
     }
 }
 
-export { fetchProductDetail }
+const productIncrement: ProductIncrementType = (product_slug) => ({type: PRODUCT_INCREMENT, payload: {product_slug}})
+
+const productDecrement: ProductDecrementType = (product_slug) => ({type: PRODUCT_DECREMENT, payload: {product_slug}})
+
+const productRemove: ProductRemoveType = (product_slug) => ({type: PRODUCT_REMOVE, payload: {product_slug}})
+
+export { fetchProductDetail, productIncrement, productDecrement, productRemove }
 
 
