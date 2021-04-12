@@ -9,6 +9,7 @@ import CatalogPage from "../pages/catalogPage"
 import ProductDetailsPage from "../pages/productDetailsPage"
 import BasketPage from "../pages/basketPage"
 import LoginPage from "../pages/loginPage"
+import RegisterPage from "../pages/registerPage"
 
 
 const App: React.FC = () => {
@@ -21,6 +22,7 @@ const App: React.FC = () => {
         <Route path={ROUTES.ABOUT} component={AboutPage} />
         <Route path={ROUTES.BASKET} component={BasketPage} />
         <Route path={ROUTES.LOGIN} component={LoginPage} />
+        <Route path={ROUTES.REGISTER} component={RegisterPage} />
       </Switch>
     </MainLayout>
   )

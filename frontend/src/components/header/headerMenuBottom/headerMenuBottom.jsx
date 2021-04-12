@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux"
 
 import styles from './headerMenuBottom.module.scss'
 import {ROUTES} from '../../../routes'
-import {logout} from "../../../redux/actions/userActions"
+import {logout} from "../../../redux/actions/userLogoutActions"
 
 
 const HeaderMenuBottom = () => {
