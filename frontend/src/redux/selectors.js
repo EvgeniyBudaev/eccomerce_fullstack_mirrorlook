@@ -42,12 +42,12 @@ export const orderProductsSelector = createSelector(
   basketSelector,
   (products, order) => {
     return Object.keys(order)
-      .filter((product_slug) => order[product_slug] > 0)
-      .map((product_slug) => products[product_slug])
+      .filter((productId) => order[productId] > 0)
+      .map((productId) => products[productId])
       .map((product) => ({
         product,
-        amount: order[product.product_slug],
-        subtotal: order[product.product_slug] * product.price,
+        amount: order[product.id],
+        subtotal: order[product.id] * product.price,
       }))
   }
 )

@@ -156,29 +156,29 @@ export type ProductsTypes = LoadProductsRequestType | LoadProductsSuccessType | 
 
 // Decrement, Increment, Remove product
 type ProductIncrementActionPayloadType = {
-  product_slug: string,
+  id: number,
 }
 export type ProductIncrementActionType = {
   type: typeof PRODUCT_INCREMENT,
   payload: ProductIncrementActionPayloadType
 }
-export type ProductIncrementType = (product_slug: string) => ProductIncrementActionType
+export type ProductIncrementType = (id: number) => ProductIncrementActionType
 
 
 type ProductDecrementActionPayloadType = {
-  product_slug: string
+  id: number,
 }
 type ProductDecrementActionType = {
   type: typeof PRODUCT_DECREMENT,
   payload: ProductDecrementActionPayloadType
 }
-export type ProductDecrementType = (product_slug: string) => ProductDecrementActionType
+export type ProductDecrementType = (id: number) => ProductDecrementActionType
 
 
 type ProductRemoveActionType = {
   type: typeof PRODUCT_REMOVE,
-  payload: {product_slug: string}
+  payload: {id: number}
 }
-export type ProductRemoveType = (product_slug: string) => ProductRemoveActionType
+export type ProductRemoveType = (id: number) => ProductRemoveActionType
 
 export type BasketActionTypes =  ProductIncrementActionType | ProductDecrementActionType | ProductRemoveActionType

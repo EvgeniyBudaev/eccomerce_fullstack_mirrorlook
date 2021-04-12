@@ -30,11 +30,11 @@ const fetchProductDetail = (category_slug: string, product_slug: string) => asyn
     }
 }
 
-const productIncrement: ProductIncrementType = (product_slug) => ({type: PRODUCT_INCREMENT, payload: {product_slug}})
+const productIncrement: ProductIncrementType = (id) => ({type: PRODUCT_INCREMENT, payload: {id}})
 
-const productDecrement: ProductDecrementType = (product_slug) => ({type: PRODUCT_DECREMENT, payload: {product_slug}})
+const productDecrement: ProductDecrementType = (id) => ({type: PRODUCT_DECREMENT, payload: {id}})
 
-const productRemove: ProductRemoveType = (product_slug) => ({type: PRODUCT_REMOVE, payload: {product_slug}})
+const productRemove: ProductRemoveType = (id) => ({type: PRODUCT_REMOVE, payload: {id}})
 
 export { fetchProductDetail, productIncrement, productDecrement, productRemove }
 
