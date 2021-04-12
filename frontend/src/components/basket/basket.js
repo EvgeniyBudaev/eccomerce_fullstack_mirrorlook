@@ -11,21 +11,21 @@ import {IBasket} from './interface'
 
 const Basket = (props) => {
   console.log('[Basket][props]', props)
-  const {total, orderProducts} = props
+  // const {total, orderProducts} = props
   //console.log('total', total)
   //console.log('orderProducts', orderProducts)
 
-  if (!total) {
-    return (
-      <section className={styles.basket}>
-        <div className={styles.container}>
-          <div className={styles.basket}>
-            <h4 className={styles.title}>В корзине нет выбранных товаров</h4>
-          </div>
-        </div>
-      </section>
-    )
-  }
+  // if (!total) {
+  //   return (
+  //     <section className={styles.basket}>
+  //       <div className={styles.container}>
+  //         <div className={styles.basket}>
+  //           <h4 className={styles.title}>В корзине нет выбранных товаров</h4>
+  //         </div>
+  //       </div>
+  //     </section>
+  //   )
+  // }
 
   return (
     <section className={styles.basket}>
@@ -49,7 +49,7 @@ const Basket = (props) => {
 }
 
 const mapStateToProps = createStructuredSelector({
-  total: totalSelector,
+  // total: totalSelector,
   orderProducts: orderProductsSelector,
 })
 
