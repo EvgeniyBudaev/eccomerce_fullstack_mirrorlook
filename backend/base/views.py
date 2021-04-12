@@ -7,6 +7,7 @@ from rest_framework import status
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import generics
+from django.contrib.auth.models import User
 from django_filters.rest_framework import DjangoFilterBackend
 
 
@@ -62,6 +63,14 @@ def get_routes(request):
 def getUserProfile(request):
   user = request.user
   serializer = UserSerializer(user, many=False)
+  return Response(serializer.data)
+
+
+@api_view(['GET'])
+@permission_classes([IsAdminUser])
+def getUsers(request):
+  users = User.objects.all()
+  serializer = UserSerializer(users, many=True)
   return Response(serializer.data)
 
 
