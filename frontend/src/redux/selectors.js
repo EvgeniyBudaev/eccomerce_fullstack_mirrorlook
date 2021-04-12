@@ -32,3 +32,28 @@ export const productLoadingSelector = (state, props) =>
 export const productLoadedSelector = (state, props) =>
   state.productDetails.loaded[props.product_slug]
 export const productByIdSelector = (state, props) => state.productDetails.entities[props.product_slug]
+
+
+
+const basketSelector = (state) => state.basket
+
+export const orderProductsSelector = createSelector(
+  productsSelector,
+  basketSelector,
+  (products, order) => {
+    return Object.keys(order)
+      .filter((product_slug) => order[product_slug] > 0)
+      .map((product_slug) => products[product_slug])
+      .map((product) => ({
+        product,
+        amount: order[product.product_slug],
+        subtotal: order[product.product_slug] * product.price,
+      }))
+  }
+)
+
+export const totalSelector = createSelector(
+  orderProductsSelector,
+  (orderProducts) =>
+    orderProducts.reduce((acc, {subtotal}) => acc + subtotal, 0)
+)

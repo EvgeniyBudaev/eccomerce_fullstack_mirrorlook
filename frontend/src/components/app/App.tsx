@@ -7,6 +7,7 @@ import AboutPage from '../about'
 import CategoriesPage from "../pages/categoriesPage"
 import CatalogPage from "../pages/catalogPage"
 import ProductDetailsPage from "../pages/productDetailsPage"
+import BasketPage from "../pages/basketPage"
 
 
 const App: React.FC = () => {
@@ -17,6 +18,7 @@ const App: React.FC = () => {
         <Route path={ROUTES.CATEGORIES + ':category_slug/'} component={CatalogPage} exact />
         <Route path={ROUTES.CATEGORIES} component={CategoriesPage} exact />
         <Route path={ROUTES.ABOUT} component={AboutPage} />
+        <Route path={ROUTES.BASKET} component={BasketPage} />
       </Switch>
     </MainLayout>
   )
