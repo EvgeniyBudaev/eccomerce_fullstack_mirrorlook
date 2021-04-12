@@ -180,3 +180,5 @@ type ProductRemoveActionType = {
   payload: {product_slug: string}
 }
 export type ProductRemoveType = (product_slug: string) => ProductRemoveActionType
+
+export type BasketActionTypes =  ProductIncrementActionType | ProductDecrementActionType | ProductRemoveActionType

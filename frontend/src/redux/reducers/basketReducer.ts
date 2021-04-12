@@ -2,10 +2,15 @@ import {
   PRODUCT_DECREMENT,
   PRODUCT_INCREMENT, PRODUCT_REMOVE
 } from "../../constants/productConstants"
+import {BasketActionTypes} from "../types"
 
+
+interface IBasketState {
+  [payload: string]: number
+}
 
 // { [productId]; amount }
-const basketReducer = (state = {}, action) => {
+const basketReducer = (state: IBasketState = {}, action: BasketActionTypes): IBasketState => {
   const {type, payload} = action
 
   switch (type) {
