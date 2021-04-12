@@ -17,4 +17,7 @@ export const ROUTES = {
   MIRROR_PANELS: '/mirror_panels/',
   MIRRORS_SUN: '/mirrors_sun/',
   CONSOLES: '/consoles/',
+
+  LOGIN: '/login',
+  REGISTER: '/register',
 }

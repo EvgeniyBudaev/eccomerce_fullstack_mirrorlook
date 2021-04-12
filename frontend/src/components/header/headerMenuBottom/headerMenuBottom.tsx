@@ -38,6 +38,11 @@ const HeaderMenuBottom: React.FC = () => {
               Категории
             </NavLink>
           </li>
+          <li>
+            <NavLink to={ROUTES.LOGIN} activeStyle={activeLink}>
+              Login
+            </NavLink>
+          </li>
           {/*<li>*/}
           {/*  <NavLink*/}
           {/*    to={ROUTES.CLEARANCE_SALE}*/}
