@@ -1,6 +1,12 @@
 import axios from 'axios'
 
-import {USER_LOGIN_FAILURE, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS} from "../../constants/userConstants"
+import {
+  USER_DETAILS_RESET,
+  USER_LOGIN_FAILURE,
+  USER_LOGIN_REQUEST,
+  USER_LOGIN_SUCCESS,
+  USER_LOGOUT
+} from "../../constants/userConstants"
 
 
 export const login = (email, password) => async (dispatch) => {
@@ -30,4 +36,11 @@ export const login = (email, password) => async (dispatch) => {
         : error.message
     })
   }
+}
+
+
+export const logout = () => (dispatch) => {
+  localStorage.removeItem('userInfo')
+  dispatch({ type: USER_LOGOUT })
+  dispatch({ type: USER_DETAILS_RESET })
 }
