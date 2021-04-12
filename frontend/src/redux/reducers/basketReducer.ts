@@ -9,7 +9,7 @@ interface IBasketState {
   [payload: number]: number
 }
 
-// { [productId]; amount }
+// { [productId]: amount }
 const basketReducer = (state: IBasketState = {}, action: BasketActionTypes): IBasketState => {
   const {type, payload} = action
 
