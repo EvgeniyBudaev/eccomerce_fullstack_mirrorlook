@@ -3,7 +3,7 @@ import axios from 'axios'
 import {BASKET_ADD_ITEM} from "../../constants/basketConstants"
 
 
-export const addToBasket = (category_slug, product_slug, qty= 0) => async (dispatch, getState) => {
+export const addToBasket = (category_slug, product_slug) => async (dispatch, getState) => {
     const {data} = await axios.get(`/api/categories/${category_slug}/${product_slug}`)
 
     dispatch({
@@ -13,8 +13,7 @@ export const addToBasket = (category_slug, product_slug, qty= 0) => async (dispa
       name: data.name,
       image:data.image,
       price: data.price,
-      count_in_stock: data.count_in_stock,
-        qty
+      count_in_stock: data.count_in_stock
     }
   })
 

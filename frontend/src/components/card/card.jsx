@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect, ConnectedProps, useDispatch, useSelector} from 'react-redux'
 import {createStructuredSelector} from 'reselect'
@@ -37,15 +37,12 @@ const Card = (props) => {
   const {product, category_slug, productIncrement, addToBasket} = props
   const {product_slug} = product
   const card = ClassNames(styles.card)
-  const amountProducts = useSelector(state => state.amountProducts)
-  const qty = amountProducts[product.id]
 
 
-  const addToBasketClickHandler = (productId, category_slug, product_slug) => {
+  const addToBasketClickHandler = (category_slug, product_slug) => {
     return (event) => {
       event.preventDefault()
-      productIncrement(productId)
-      addToBasket(category_slug, product_slug, qty)
+      addToBasket(category_slug, product_slug)
     }
   }
 
@@ -94,7 +91,7 @@ const Card = (props) => {
             <div className={styles.footerBottomStatus}>В наличии</div>
             <button
                 className={styles.footerBottomBtn}
-                onClick={addToBasketClickHandler(product.id, category_slug, product_slug)}
+                onClick={addToBasketClickHandler(category_slug, product_slug)}
                 disabled={product.count_in_stock === 0}
             >В корзину</button>
             {/*<div>{amount || 0}</div>*/}
