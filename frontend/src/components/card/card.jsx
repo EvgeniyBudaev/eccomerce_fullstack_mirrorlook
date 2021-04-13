@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
-import {connect, ConnectedProps, useDispatch} from 'react-redux'
+import {connect, ConnectedProps, useDispatch, useSelector} from 'react-redux'
 import {createStructuredSelector} from 'reselect'
 import ClassNames from 'classnames'
 
@@ -37,26 +37,21 @@ const Card = (props) => {
   const {product, category_slug, productIncrement, addToBasket} = props
   const {product_slug} = product
   const card = ClassNames(styles.card)
+  const amountProducts = useSelector(state => state.amountProducts)
+  const qty = amountProducts[product.id]
 
-  // const addToBasketClickHandler = (productId: number, category_slug: string, product_slug: string) => {
-  //     return (event: React.MouseEvent) => {
-  //       event.preventDefault()
-  //       productIncrement(productId)
-  //       addToBasket(category_slug, product_slug)
-  //     }
-  // }
 
-    const addToBasketClickHandler = (productId, category_slug, product_slug) => {
-      return (event) => {
-        event.preventDefault()
-        productIncrement(productId)
-        addToBasket(category_slug, product_slug)
-      }
+  const addToBasketClickHandler = (productId, category_slug, product_slug) => {
+    return (event) => {
+      event.preventDefault()
+      productIncrement(productId)
+      addToBasket(category_slug, product_slug, qty)
+    }
   }
 
   if (!product) return null
 
-  // @ts-ignore
+
   return (
     <div className={card}>
       <div className={styles.wrapper}>
