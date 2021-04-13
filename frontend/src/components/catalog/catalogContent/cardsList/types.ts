@@ -7,7 +7,7 @@ export type MapStatePropsCardsListType = {
 }
 
 export type MapDispatchPropsCardsListType = {
-  fetchProducts: (category_slug: string) => void,
+  fetchProductsByCategory: (category_slug: string) => void,
 }
 
 export type PropCardsListTypes = {

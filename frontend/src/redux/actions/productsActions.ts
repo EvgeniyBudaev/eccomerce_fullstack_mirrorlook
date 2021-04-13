@@ -5,7 +5,7 @@ import {LOAD_PRODUCTS_FAILURE, LOAD_PRODUCTS_REQUEST, LOAD_PRODUCTS_SUCCESS} fro
 import {ProductsTypes} from "../types"
 
 
-const fetchProducts = (category_slug: string) => async (dispatch: Dispatch<ProductsTypes>) => {
+const fetchProductsByCategory = (category_slug: string) => async (dispatch: Dispatch<ProductsTypes>) => {
     try {
         dispatch({type: LOAD_PRODUCTS_REQUEST, category_slug })
         const {data} = await axios.get(`/api/categories/${category_slug}/`)
@@ -20,4 +20,4 @@ const fetchProducts = (category_slug: string) => async (dispatch: Dispatch<Produ
 }
 
 
-export { fetchProducts }
+export { fetchProductsByCategory }

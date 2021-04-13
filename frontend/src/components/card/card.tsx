@@ -26,7 +26,7 @@ type DispatchPropsType = PropsFromRedux & {
 }
 
 const Card: React.FC<CardTypes> = (props) => {
-  // onsole.log('[Card][props]', props)
+  console.log('[Card][props]', props)
   const {product, category_slug, productIncrement} = props
   const {product_slug} = product
   const card = ClassNames(styles.card)

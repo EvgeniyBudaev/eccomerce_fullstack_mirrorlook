@@ -48,7 +48,7 @@ const productReducer = (state = initialState, action: ProductDetailsTypes ): ISt
         draft.loading[action.product_slug] = false
         draft.loaded[action.product_slug] = true
         draft.error = null
-        draft.entities[action.product_slug] = {...draft.entities[action.product_slug], ...action.payload}
+        draft.entities[action.product_slug] = action.payload
         break
       }
       case LOAD_PRODUCT_DETAILS_FAILURE: {

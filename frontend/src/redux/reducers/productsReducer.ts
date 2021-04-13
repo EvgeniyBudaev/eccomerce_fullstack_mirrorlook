@@ -23,7 +23,7 @@ const initialState: IStateProducts = {
 }
 
 
-// { [categoryId]: {[product_slug]: product} }
+// { category_slug: [{product}] }
 const productsReducer = (state = initialState, action: ProductsTypes): IStateProducts =>
   produce(state, (draft) => {
     // console.log('[productsReducer][action]', action)
@@ -37,7 +37,7 @@ const productsReducer = (state = initialState, action: ProductsTypes): IStatePro
         draft.loading[action.category_slug] = false
         draft.loaded[action.category_slug] = true
         draft.error = null
-        draft.entities[action.category_slug] = {...draft.entities[action.category_slug], ...arrToMap(action.payload)}
+        draft.entities[action.category_slug] = action.payload
         break
       }
       case LOAD_PRODUCTS_FAILURE: {
