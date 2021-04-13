@@ -1,0 +1,75 @@
+.basketBottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left {
+  & a {
+    color: var(--beige);
+    position: relative;
+    transition: all 0.3s;
+  }
+  & a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--beige);
+    transition: all 0.3s;
+  }
+  & a:hover {
+    color: var(--lightBeige);
+  }
+  & a:hover::before {
+    width: 100%;
+    background-color: var(--lightBeige);
+  }
+}
+
+.right {
+  text-align: end;
+}
+
+.rightInfo {
+  margin-bottom: 50px;
+  max-width: 370px;
+  width: 100%;
+}
+
+.rightInfo p + p {
+  margin-top: 10px;
+}
+
+.rightInfo span.semiBold {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+
+.rightInfo span.uppercase {
+  text-transform: uppercase;
+}
+
+.rightInfo a {
+  color: var(--beige);
+  position: relative;
+  transition: all 0.3s;
+}
+
+.rightInfo a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--beige);
+  transition: all 0.3s;
+}
+
+.rightInfo a:hover {
+  color: var(--lightBeige);
+}
+
+.rightInfo a:hover::before {
+  background-color: var(--lightBeige);
+}

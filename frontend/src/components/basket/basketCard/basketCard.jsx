@@ -2,15 +2,12 @@ import React from 'react'
 import styles from './basketCard.module.scss'
 import {connect, ConnectedProps} from 'react-redux'
 
-const mapStateToProps = state => ({
-    itemsCount: state.basket.entities.reduce((acc, item) => acc += item.quantity, 0)
-})
 
-const connector = connect(mapStateToProps, null)
+const connector = connect(null, null)
 
 
 const BasketCard = (props) => {
-  const {product, itemsCount} = props
+  const {product} = props
   const {id, image, name, price, quantity} = product
   console.log('[basketCard][props]', props)
 
