@@ -16,6 +16,7 @@ import {
   LOAD_PRODUCTS_REQUEST,
   LOAD_PRODUCTS_SUCCESS
 } from "../constants/productsConstants"
+import {BASKET_ADD_ITEM} from "../constants/basketConstants";
 
 
 export interface ILoading {
@@ -182,3 +183,15 @@ type ProductRemoveActionType = {
 export type ProductRemoveType = (id: number) => ProductRemoveActionType
 
 export type BasketActionTypes =  ProductIncrementActionType | ProductDecrementActionType | ProductRemoveActionType
+
+
+// Корзина
+type addToBasketActionPayloadType = {
+  category_slug: string,
+  product_slug: string
+}
+export type addToBasketActionType = {
+  type: typeof BASKET_ADD_ITEM,
+  payload: any
+}
+export type addToBasketType = (category_slug: string, product_slug: string) => addToBasketActionType

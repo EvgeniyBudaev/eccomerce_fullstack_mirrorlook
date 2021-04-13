@@ -7,35 +7,50 @@ import ClassNames from 'classnames'
 import styles from './card.module.scss'
 import {ROUTES} from '../../routes'
 import {productSelector} from "../../redux/selectors"
-import {IProduct, ProductIncrementType} from "../../redux/types"
+// import {
+//   addToBasketType,
+//   IProduct,
+//   ProductIncrementType
+// } from "../../redux/types"
 import {productIncrement} from '../../redux/actions/productActions'
+import {addToBasket} from "../../redux/actions/basketActions"
 
 
 
-interface ICard {
-  product: IProduct,
-  category_slug: string
-}
+// interface ICard {
+//   product: IProduct,
+//   category_slug: string
+// }
+//
+// export type CardTypes = ICard & DispatchPropsType
 
-export type CardTypes = ICard & DispatchPropsType
+const connector = connect(null, {productIncrement, addToBasket})
+// type PropsFromRedux = ConnectedProps<typeof connector>
+// type DispatchPropsType = PropsFromRedux & {
+//   productIncrement: ProductIncrementType,
+//   addToBasket: addToBasketType
+// }
 
-const connector = connect(null, {productIncrement})
-type PropsFromRedux = ConnectedProps<typeof connector>
-type DispatchPropsType = PropsFromRedux & {
-  productIncrement: ProductIncrementType,
-}
-
-const Card: React.FC<CardTypes> = (props) => {
+// const Card: React.FC<CardTypes> = (props) => {
+const Card = (props) => {
   console.log('[Card][props]', props)
-  const {product, category_slug, productIncrement} = props
+  const {product, category_slug, productIncrement, addToBasket} = props
   const {product_slug} = product
   const card = ClassNames(styles.card)
-  const dispatch =  useDispatch()
 
-  const addToBasketClickHandler = (id: number) => {
-      return (event: React.MouseEvent) => {
+  // const addToBasketClickHandler = (productId: number, category_slug: string, product_slug: string) => {
+  //     return (event: React.MouseEvent) => {
+  //       event.preventDefault()
+  //       productIncrement(productId)
+  //       addToBasket(category_slug, product_slug)
+  //     }
+  // }
+
+    const addToBasketClickHandler = (productId, category_slug, product_slug) => {
+      return (event) => {
         event.preventDefault()
-        productIncrement(id)
+        productIncrement(productId)
+        addToBasket(category_slug, product_slug)
       }
   }
 
@@ -84,7 +99,7 @@ const Card: React.FC<CardTypes> = (props) => {
             <div className={styles.footerBottomStatus}>В наличии</div>
             <button
                 className={styles.footerBottomBtn}
-                onClick={addToBasketClickHandler(product.id)}
+                onClick={addToBasketClickHandler(product.id, category_slug, product_slug)}
                 disabled={product.count_in_stock === 0}
             >В корзину</button>
             {/*<div>{amount || 0}</div>*/}

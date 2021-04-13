@@ -1,7 +1,7 @@
 import {BASKET_ADD_ITEM} from "../../constants/basketConstants"
 
 
-const cartReducer = (state={basketItems:[], shippingAddress: {}}, action) => {
+const basketReducer = (state={basketItems:[], shippingAddress: {}}, action) => {
   switch (action.type) {
     case BASKET_ADD_ITEM:
       const item = action.payload
@@ -23,4 +23,4 @@ const cartReducer = (state={basketItems:[], shippingAddress: {}}, action) => {
   }
 }
 
-export {cartReducer}
+export {basketReducer}
