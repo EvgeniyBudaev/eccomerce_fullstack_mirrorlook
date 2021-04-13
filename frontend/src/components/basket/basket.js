@@ -5,15 +5,11 @@ import {connect} from 'react-redux'
 import styles from './basket.module.scss'
 // import BasketCard from './basketCard'
 // import BasketBottom from './basketBottom'
-import {orderProductsSelector, totalSelector} from '../../redux/selectors'
-import {IBasket} from './interface'
+
 
 
 const Basket = (props) => {
   console.log('[Basket][props]', props)
-  // const {total, orderProducts} = props
-  //console.log('total', total)
-  //console.log('orderProducts', orderProducts)
 
   // if (!total) {
   //   return (
@@ -49,8 +45,6 @@ const Basket = (props) => {
 }
 
 const mapStateToProps = createStructuredSelector({
-  // total: totalSelector,
-  orderProducts: orderProductsSelector,
 })
 
 export default connect(mapStateToProps)(Basket)

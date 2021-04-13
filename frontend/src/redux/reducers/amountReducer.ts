@@ -10,7 +10,7 @@ interface IBasketState {
 }
 
 // { [productId]: amount }
-const basketReducer = (state: IBasketState = {}, action: BasketActionTypes): IBasketState => {
+const amountReducer = (state: IBasketState = {}, action: BasketActionTypes): IBasketState => {
   const {type, payload} = action
 
   switch (type) {
@@ -25,4 +25,4 @@ const basketReducer = (state: IBasketState = {}, action: BasketActionTypes): IBa
   }
 }
 
-export {basketReducer}
+export {amountReducer}

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {connect, ConnectedProps} from 'react-redux'
+import {connect, ConnectedProps, useDispatch} from 'react-redux'
 import {createStructuredSelector} from 'reselect'
 import ClassNames from 'classnames'
 
@@ -30,9 +30,18 @@ const Card: React.FC<CardTypes> = (props) => {
   const {product, category_slug, productIncrement} = props
   const {product_slug} = product
   const card = ClassNames(styles.card)
+  const dispatch =  useDispatch()
+
+  const addToBasketClickHandler = (id: number) => {
+      return (event: React.MouseEvent) => {
+        event.preventDefault()
+        productIncrement(id)
+      }
+  }
 
   if (!product) return null
 
+  // @ts-ignore
   return (
     <div className={card}>
       <div className={styles.wrapper}>
@@ -73,7 +82,11 @@ const Card: React.FC<CardTypes> = (props) => {
           <div className={styles.footerBottom}>
             <div className={styles.footerBottomNum}>{product.price} ₽</div>
             <div className={styles.footerBottomStatus}>В наличии</div>
-            <button className={styles.footerBottomBtn} onClick={() => productIncrement(product.id)}>В корзину</button>
+            <button
+                className={styles.footerBottomBtn}
+                onClick={addToBasketClickHandler(product.id)}
+                disabled={product.count_in_stock === 0}
+            >В корзину</button>
             {/*<div>{amount || 0}</div>*/}
           </div>
         </div>
