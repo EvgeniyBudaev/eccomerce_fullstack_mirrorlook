@@ -2,12 +2,12 @@ import {BASKET_ADD_ITEM} from "../../constants/basketConstants"
 import {addItemToCart} from "../utils"
 
 
-const basketReducer = (state={cartItems:[], shippingAddress: {}}, action) => {
+const basketReducer = (state={entities:[], shippingAddress: {}}, action) => {
   switch (action.type) {
     case BASKET_ADD_ITEM:
       return {
         ...state,
-        cartItems: addItemToCart(state.cartItems, action.payload)
+        entities: addItemToCart(state.entities, action.payload)
       }
 
     default:

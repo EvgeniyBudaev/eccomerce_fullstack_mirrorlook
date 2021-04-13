@@ -34,6 +34,6 @@ export const productLoadedSelector = (state, props) =>
 export const productByIdSelector = (state, props) => state.productDetails.entities[props.product_slug]
 
 
-
+export const basketSelector = (state) => state.basket.entities
 
 

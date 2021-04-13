@@ -12,7 +12,7 @@ import {productSelector} from "../../redux/selectors"
 //   IProduct,
 //   ProductIncrementType
 // } from "../../redux/types"
-import {productIncrement} from '../../redux/actions/productActions'
+
 import {addToBasket} from "../../redux/actions/basketActions"
 
 
@@ -24,7 +24,7 @@ import {addToBasket} from "../../redux/actions/basketActions"
 //
 // export type CardTypes = ICard & DispatchPropsType
 
-const connector = connect(null, {productIncrement, addToBasket})
+const connector = connect(null, {addToBasket})
 // type PropsFromRedux = ConnectedProps<typeof connector>
 // type DispatchPropsType = PropsFromRedux & {
 //   productIncrement: ProductIncrementType,
