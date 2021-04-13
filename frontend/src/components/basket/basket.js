@@ -1,6 +1,6 @@
 import React from 'react'
 import {createStructuredSelector} from 'reselect'
-import {connect, useSelector} from 'react-redux'
+import {connect} from 'react-redux'
 
 import styles from './basket.module.scss'
 import {basketSelector, totalSelector} from "../../redux/selectors"
@@ -30,6 +30,7 @@ const Basket = (props) => {
       <div className={styles.container}>
         <h2 className={styles.title}>Корзина</h2>
         <div className={styles.cards}>
+
             {items.map((product) => (
             <BasketCard
               product={product}
@@ -37,15 +38,6 @@ const Basket = (props) => {
               total={total}
             />
           ))}
-
-          {/*{orderProducts.map(({product, amount, subtotal}) => (*/}
-          {/*  <BasketCard*/}
-          {/*    product={product}*/}
-          {/*    amount={amount}*/}
-          {/*    key={product.id}*/}
-          {/*    subtotal={subtotal}*/}
-          {/*  />*/}
-          {/*))}*/}
 
           <BasketBottom total={total} />
         </div>
