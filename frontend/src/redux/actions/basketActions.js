@@ -9,7 +9,7 @@ export const addToBasket = (category_slug, product_slug) => async (dispatch, get
     dispatch({
     type: BASKET_ADD_ITEM,
     payload : {
-      product: data.id,
+      id: data.id,
       name: data.name,
       image:data.image,
       price: data.price,
