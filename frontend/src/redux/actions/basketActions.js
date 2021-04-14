@@ -1,9 +1,9 @@
 import axios from 'axios'
 
 import {
-    ADD_ITEM_FROM_BASKET,
+    INCREMENT_ITEM_FROM_BASKET,
     BASKET_ADD_ITEM,
-    BASKET_REMOVE_ITEM
+    BASKET_REMOVE_ITEM, DECREMENT_ITEM_FROM_BASKET
 } from "../../constants/basketConstants"
 
 
@@ -25,9 +25,18 @@ export const addToBasket = (category_slug, product_slug) => async (dispatch, get
 }
 
 
-export const addItemToBasket = (product) => (dispatch, getState) => {
+export const incrementItemToBasket = (product) => (dispatch, getState) => {
   dispatch({
-    type: ADD_ITEM_FROM_BASKET,
+    type: INCREMENT_ITEM_FROM_BASKET,
+    payload: product,
+  })
+  // localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+}
+
+
+export const decrementItemToBasket = (product) => (dispatch, getState) => {
+  dispatch({
+    type: DECREMENT_ITEM_FROM_BASKET,
     payload: product,
   })
   // localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))

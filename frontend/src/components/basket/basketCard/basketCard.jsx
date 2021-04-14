@@ -2,18 +2,19 @@ import React from 'react'
 import {connect, ConnectedProps, useDispatch} from 'react-redux'
 
 import styles from './basketCard.module.scss'
-import {removeItemFromBasket, addItemToBasket} from "../../../redux/actions/basketActions"
+import {removeItemFromBasket, incrementItemToBasket, decrementItemToBasket} from "../../../redux/actions/basketActions"
 
 const mapDispatchToProps = dispatch => ({
     removeItemFromCartHandler: id => dispatch(removeItemFromBasket(id)),
-    addItemToCartHandler: id => dispatch(addItemToBasket(id))
+    incrementItemToCartHandler: id => dispatch(incrementItemToBasket(id)),
+    decrementItemToCartHandler: id => dispatch(decrementItemToBasket(id))
 })
 
 const connector = connect(null, mapDispatchToProps)
 
 
 const BasketCard = (props) => {
-  const {product, removeItemFromCartHandler, addItemToCartHandler} = props
+  const {product, removeItemFromCartHandler, incrementItemToCartHandler, decrementItemToCartHandler} = props
   const {id, image, name, price, quantity} = product
   console.log('[basketCard][props]', props)
 
@@ -36,14 +37,14 @@ const BasketCard = (props) => {
         <p className={styles.unitPrice}>{price} ₽</p>
       </div>
       <div className={styles.amountBox}>
-        <button className={styles.button}  onClick={() => {}}>-</button>
+        <button className={styles.button}  onClick={() => decrementItemToCartHandler(product)}>-</button>
         <div className={styles.amount}>
           <p className={styles.amountText}>Кол-во</p>
           <div className={styles.amountNumber}>{quantity}</div>
         </div>
         <button
             className={styles.button}
-            onClick={() => addItemToCartHandler(product)}
+            onClick={() => incrementItemToCartHandler(product)}
         >+</button>
       </div>
       <div className={styles.total}>

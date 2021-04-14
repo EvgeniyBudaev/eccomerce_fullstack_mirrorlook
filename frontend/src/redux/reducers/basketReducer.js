@@ -1,9 +1,10 @@
 import {
-    ADD_ITEM_FROM_BASKET,
     BASKET_ADD_ITEM,
-    BASKET_REMOVE_ITEM
+    BASKET_REMOVE_ITEM,
+    INCREMENT_ITEM_FROM_BASKET,
+    DECREMENT_ITEM_FROM_BASKET
 } from "../../constants/basketConstants"
-import {addItemToCart, removeItemFromCart} from "../utils"
+import {addItemToCart, decrementItemToCart, removeItemFromCart} from "../utils"
 
 
 const basketReducer = (state = {entities: [], shippingAddress: {}}, action) => {
@@ -14,10 +15,16 @@ const basketReducer = (state = {entities: [], shippingAddress: {}}, action) => {
                 entities: addItemToCart(state.entities, action.payload)
             }
 
-        case ADD_ITEM_FROM_BASKET:
+        case INCREMENT_ITEM_FROM_BASKET:
             return {
                 ...state,
                 entities: addItemToCart(state.entities, action.payload)
+            }
+
+        case DECREMENT_ITEM_FROM_BASKET:
+            return {
+                ...state,
+                entities: decrementItemToCart(state.entities, action.payload)
             }
 
         case BASKET_REMOVE_ITEM:
