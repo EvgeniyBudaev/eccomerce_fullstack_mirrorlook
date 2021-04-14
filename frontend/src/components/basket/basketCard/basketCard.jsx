@@ -1,15 +1,25 @@
 import React from 'react'
+import {connect, ConnectedProps, useDispatch} from 'react-redux'
+
 import styles from './basketCard.module.scss'
-import {connect, ConnectedProps} from 'react-redux'
+import {removeItemFromBasket} from "../../../redux/actions/basketActions"
 
+const mapDispatchToProps = dispatch => ({
+    removeItemFromCartHandler: id => dispatch(removeItemFromBasket(id))
+})
 
-const connector = connect(null, null)
+const connector = connect(null, mapDispatchToProps)
 
 
 const BasketCard = (props) => {
-  const {product} = props
+  const {product, removeItemFromCartHandler} = props
   const {id, image, name, price, quantity} = product
   console.log('[basketCard][props]', props)
+
+    // const dispatch =  useDispatch()
+    // const removeItemFromCartHandler = (id) => {
+    //     dispatch(removeItemFromBasket(id))
+    // }
 
   return (
     <div className={styles.basketCard}>
@@ -34,7 +44,10 @@ const BasketCard = (props) => {
       </div>
       <div className={styles.total}>
         <p className={styles.totalPrice}>{quantity * price} ₽</p>
-        <button className={styles.totalButton}>
+        <button
+            className={styles.totalButton}
+            onClick={() => removeItemFromCartHandler(id)}
+        >
           <svg
             width="22"
             height="22"
@@ -66,7 +79,7 @@ const BasketCard = (props) => {
               </clipPath>
             </defs>
           </svg>
-          <p onClick={() => {}}>Удалить</p>
+          <p>Удалить</p>
         </button>
       </div>
     </div>

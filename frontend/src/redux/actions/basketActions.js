@@ -1,6 +1,9 @@
 import axios from 'axios'
 
-import {BASKET_ADD_ITEM} from "../../constants/basketConstants"
+import {
+    BASKET_ADD_ITEM,
+    BASKET_REMOVE_ITEM
+} from "../../constants/basketConstants"
 
 
 export const addToBasket = (category_slug, product_slug) => async (dispatch, getState) => {
@@ -18,4 +21,15 @@ export const addToBasket = (category_slug, product_slug) => async (dispatch, get
   })
 
   // localStorage.setItem('basketItems', JSON.stringify(getState().cart.cartItems))
+}
+
+
+export const removeItemFromBasket = (id) => (dispatch, getState) => {
+    console.log('action remove by id', id)
+  dispatch({
+    type: BASKET_REMOVE_ITEM,
+    payload: id,
+  })
+
+  // localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
 }
