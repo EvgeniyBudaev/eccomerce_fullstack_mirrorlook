@@ -1,6 +1,7 @@
 import {
-  BASKET_ADD_ITEM,
-  BASKET_REMOVE_ITEM
+    ADD_ITEM_FROM_BASKET,
+    BASKET_ADD_ITEM,
+    BASKET_REMOVE_ITEM
 } from "../../constants/basketConstants"
 import {addItemToCart, removeItemFromCart} from "../utils"
 
@@ -8,6 +9,12 @@ import {addItemToCart, removeItemFromCart} from "../utils"
 const basketReducer = (state = {entities: [], shippingAddress: {}}, action) => {
     switch (action.type) {
         case BASKET_ADD_ITEM:
+            return {
+                ...state,
+                entities: addItemToCart(state.entities, action.payload)
+            }
+
+        case ADD_ITEM_FROM_BASKET:
             return {
                 ...state,
                 entities: addItemToCart(state.entities, action.payload)

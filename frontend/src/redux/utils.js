@@ -16,3 +16,6 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
 
 export const removeItemFromCart = (cartItems, id) => cartItems.filter(item => item.id !== id)
 
+
+
+

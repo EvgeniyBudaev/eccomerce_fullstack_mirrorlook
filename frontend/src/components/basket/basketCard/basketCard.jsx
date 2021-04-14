@@ -2,17 +2,18 @@ import React from 'react'
 import {connect, ConnectedProps, useDispatch} from 'react-redux'
 
 import styles from './basketCard.module.scss'
-import {removeItemFromBasket} from "../../../redux/actions/basketActions"
+import {removeItemFromBasket, addItemToBasket} from "../../../redux/actions/basketActions"
 
 const mapDispatchToProps = dispatch => ({
-    removeItemFromCartHandler: id => dispatch(removeItemFromBasket(id))
+    removeItemFromCartHandler: id => dispatch(removeItemFromBasket(id)),
+    addItemToCartHandler: id => dispatch(addItemToBasket(id))
 })
 
 const connector = connect(null, mapDispatchToProps)
 
 
 const BasketCard = (props) => {
-  const {product, removeItemFromCartHandler} = props
+  const {product, removeItemFromCartHandler, addItemToCartHandler} = props
   const {id, image, name, price, quantity} = product
   console.log('[basketCard][props]', props)
 
@@ -40,7 +41,10 @@ const BasketCard = (props) => {
           <p className={styles.amountText}>Кол-во</p>
           <div className={styles.amountNumber}>{quantity}</div>
         </div>
-        <button className={styles.button} onClick={() => {}}>+</button>
+        <button
+            className={styles.button}
+            onClick={() => addItemToCartHandler(product)}
+        >+</button>
       </div>
       <div className={styles.total}>
         <p className={styles.totalPrice}>{quantity * price} ₽</p>
