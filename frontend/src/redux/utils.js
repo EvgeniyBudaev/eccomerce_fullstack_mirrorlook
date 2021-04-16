@@ -17,20 +17,25 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
 export const removeItemFromCart = (cartItems, id) => cartItems.filter(item => item.id !== id)
 
 
-export const decrementItemToCart = (cartItems, cartItemToAdd) => {
+export const decrementItemToCart = (cartItems, cartItemToDecrement) => {
     const existingCartItem = cartItems.find(
-        cartItem => cartItem.id === cartItemToAdd.id
+        cartItem => cartItem.id === cartItemToDecrement.id
     )
 
     if (existingCartItem) {
-        return cartItems.map(cartItem =>
-        cartItem.id === cartItemToAdd.id
+        if (cartItemToDecrement.quantity === 1) {
+            return cartItems.filter(item => item.id !== cartItemToDecrement.id)
+        } else {
+            return cartItems.map(cartItem =>
+        cartItem.id === cartItemToDecrement.id
             ? {...cartItem, quantity: cartItem.quantity - 1}
             : cartItem
         )
+        }
+
     }
 
-    return [...cartItems, {...cartItemToAdd, quantity: 1}]
+    return [...cartItems]
 }
 
 
