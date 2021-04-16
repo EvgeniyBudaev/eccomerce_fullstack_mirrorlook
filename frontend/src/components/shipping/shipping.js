@@ -4,6 +4,8 @@ import {useHistory} from "react-router"
 
 import Button from "../UI/button"
 import {saveShippingAddress} from "../../redux/actions/basketActions"
+import {ROUTES} from "../../routes"
+import CheckoutSteps from "../checkoutSteps"
 
 
 const Shipping = () => {
@@ -11,7 +13,6 @@ const Shipping = () => {
     const dispatch = useDispatch()
 
     const cart = useSelector(state => state.basket)
-    console.log('cart', cart)
     const {shippingAddress} = cart
 
     const [address, setAddress] = useState(shippingAddress.address)
@@ -22,11 +23,13 @@ const Shipping = () => {
         e.preventDefault()
         const data = {address, city, postalCode}
         dispatch(saveShippingAddress(data))
-        history.push('/payment')
+        history.push(ROUTES.PAYMENT)
     }
 
     return (
         <>
+            <CheckoutSteps />
+            <h2>Доставка</h2>
             <form onSubmit={submitHandler}>
                 <label htmlFor="shipping_address">Адрес</label>
                 <input

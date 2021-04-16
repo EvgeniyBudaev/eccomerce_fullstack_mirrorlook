@@ -22,5 +22,6 @@ export const ROUTES = {
   REGISTER: '/register',
   PROFILE: '/profile',
   SHIPPING: '/shipping',
-  PAYMENT: '/payment'
+  PAYMENT: '/payment',
+  PLACE_ORDER: '/place_order'
 }
