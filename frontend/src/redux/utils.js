@@ -27,10 +27,10 @@ export const decrementItemToCart = (cartItems, cartItemToDecrement) => {
             return cartItems.filter(item => item.id !== cartItemToDecrement.id)
         } else {
             return cartItems.map(cartItem =>
-        cartItem.id === cartItemToDecrement.id
-            ? {...cartItem, quantity: cartItem.quantity - 1}
-            : cartItem
-        )
+                cartItem.id === cartItemToDecrement.id
+                    ? {...cartItem, quantity: cartItem.quantity - 1}
+                    : cartItem
+            )
         }
 
     }

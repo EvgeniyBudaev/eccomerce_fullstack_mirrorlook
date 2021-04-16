@@ -28,7 +28,7 @@ const Shipping = () => {
 
     return (
         <>
-            <CheckoutSteps />
+            <CheckoutSteps step1 step2 />
             <h2>Доставка</h2>
             <form onSubmit={submitHandler}>
                 <label htmlFor="shipping_address">Адрес</label>

@@ -3,7 +3,7 @@ import {
     BASKET_REMOVE_ITEM,
     INCREMENT_ITEM_FROM_BASKET,
     DECREMENT_ITEM_FROM_BASKET,
-    CART_SAVE_SHIPPING_ADDRESS
+    CART_SAVE_SHIPPING_ADDRESS, CART_SAVE_PAYMENT_METHOD
 } from "../../constants/basketConstants"
 import {addItemToCart, decrementItemToCart, removeItemFromCart} from "../utils"
 
@@ -42,6 +42,12 @@ const basketReducer = (state = initialState, action) => {
             return {
                 ...state,
                 shippingAddress: action.payload
+            }
+
+        case CART_SAVE_PAYMENT_METHOD:
+            return {
+                ...state,
+                paymentMethod: action.payload
             }
 
         default:

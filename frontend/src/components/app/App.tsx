@@ -12,6 +12,7 @@ import LoginPage from "../pages/loginPage"
 import RegisterPage from "../pages/registerPage"
 import ShippingPage from "../pages/shippingPage"
 import PaymentPage from "../pages/paymentPage"
+import PlaceOrderPage from "../pages/placeOrderPage"
 
 
 const App: React.FC = () => {
@@ -27,6 +28,7 @@ const App: React.FC = () => {
         <Route path={ROUTES.REGISTER} component={RegisterPage} />
         <Route path={ROUTES.SHIPPING} component={ShippingPage} />
         <Route path={ROUTES.PAYMENT} component={PaymentPage} />
+        <Route path={ROUTES.PLACE_ORDER} component={PlaceOrderPage} />
       </Switch>
     </MainLayout>
   )
