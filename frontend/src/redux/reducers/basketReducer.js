@@ -2,12 +2,17 @@ import {
     BASKET_ADD_ITEM,
     BASKET_REMOVE_ITEM,
     INCREMENT_ITEM_FROM_BASKET,
-    DECREMENT_ITEM_FROM_BASKET
+    DECREMENT_ITEM_FROM_BASKET,
+    CART_SAVE_SHIPPING_ADDRESS
 } from "../../constants/basketConstants"
 import {addItemToCart, decrementItemToCart, removeItemFromCart} from "../utils"
 
+const initialState = {
+    entities: [],
+    shippingAddress: {}
+}
 
-const basketReducer = (state = {entities: [], shippingAddress: {}}, action) => {
+const basketReducer = (state = initialState, action) => {
     switch (action.type) {
         case BASKET_ADD_ITEM:
             return {
@@ -30,8 +35,13 @@ const basketReducer = (state = {entities: [], shippingAddress: {}}, action) => {
         case BASKET_REMOVE_ITEM:
             return {
                 ...state,
-                // entities: state.entities.filter(x => x.id !== action.payload)
                 entities: removeItemFromCart(state.entities, action.payload)
+            }
+
+        case CART_SAVE_SHIPPING_ADDRESS:
+            return {
+                ...state,
+                shippingAddress: action.payload
             }
 
         default:

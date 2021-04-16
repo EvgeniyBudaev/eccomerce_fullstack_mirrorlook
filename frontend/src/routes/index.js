@@ -21,4 +21,6 @@ export const ROUTES = {
   LOGIN: '/login',
   REGISTER: '/register',
   PROFILE: '/profile',
+  SHIPPING: '/shipping',
+  PAYMENT: '/payment'
 }

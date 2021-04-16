@@ -1,5 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {useHistory} from "react-router"
+
 import styles from './basketBottom.module.scss'
 import {ROUTES} from '../../../routes'
 import Button from '../../UI/button'
@@ -8,6 +10,11 @@ import {IBasketBottom} from './interface'
 
 const BasketBottom: React.FC<IBasketBottom> = (props) => {
   const {total} = props
+  const history = useHistory()
+
+  const checkoutHandler = () => {
+    history.push('/login?redirect=shipping')
+  }
 
   return (
     <div className={styles.basketBottom}>
@@ -31,9 +38,11 @@ const BasketBottom: React.FC<IBasketBottom> = (props) => {
           </p>
         </div>
 
-        <Link to={ROUTES.CHECKOUT}>
-          <Button text={'Оформить заказ'} />
-        </Link>
+          <Button
+              type='button'
+              text={'Оформить заказ'}
+              onClick={checkoutHandler}
+          />
       </div>
     </div>
   )

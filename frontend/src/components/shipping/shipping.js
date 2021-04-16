@@ -1,0 +1,64 @@
+import React, {useState} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import {useHistory} from "react-router"
+
+import Button from "../UI/button"
+import {saveShippingAddress} from "../../redux/actions/basketActions"
+
+
+const Shipping = () => {
+    const history = useHistory()
+    const dispatch = useDispatch()
+
+    const cart = useSelector(state => state.basket)
+    console.log('cart', cart)
+    const {shippingAddress} = cart
+
+    const [address, setAddress] = useState(shippingAddress.address)
+    const [city, setCity] = useState(shippingAddress.city)
+    const [postalCode, setPostalCode] = useState(shippingAddress.postalCode)
+
+    const submitHandler = (e) => {
+        e.preventDefault()
+        const data = {address, city, postalCode}
+        dispatch(saveShippingAddress(data))
+        history.push('/payment')
+    }
+
+    return (
+        <>
+            <form onSubmit={submitHandler}>
+                <label htmlFor="shipping_address">Адрес</label>
+                <input
+                    id="shipping_address"
+                    type="text"
+                    placeholder="Введите Ваш адрес"
+                    value={address ? address : ''}
+                    onChange={(e) => setAddress(e.target.value)}
+                />
+
+                <label htmlFor="shipping_city">Город</label>
+                <input
+                    id="shipping_city"
+                    type="text"
+                    placeholder="Введите название Вашего города"
+                    value={city ? city : ''}
+                    onChange={(e) => setCity(e.target.value)}
+                />
+
+                <label htmlFor="shipping_postalCode">Почтовый индекс</label>
+                <input
+                    id="shipping_postalCode"
+                    type="text"
+                    placeholder="Введите Ваш почтовый индекс"
+                    value={postalCode ? postalCode : ''}
+                    onChange={(e) => setPostalCode(e.target.value)}
+                />
+
+                <Button type="submit" text="Продолжить" />
+            </form>
+        </>
+    )
+}
+
+export default Shipping

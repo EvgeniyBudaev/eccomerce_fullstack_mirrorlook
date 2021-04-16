@@ -3,7 +3,7 @@ import axios from 'axios'
 import {
     INCREMENT_ITEM_FROM_BASKET,
     BASKET_ADD_ITEM,
-    BASKET_REMOVE_ITEM, DECREMENT_ITEM_FROM_BASKET
+    BASKET_REMOVE_ITEM, DECREMENT_ITEM_FROM_BASKET, CART_SAVE_SHIPPING_ADDRESS
 } from "../../constants/basketConstants"
 
 
@@ -21,7 +21,7 @@ export const addToBasket = (category_slug, product_slug) => async (dispatch, get
     }
   })
 
-  // localStorage.setItem('basketItems', JSON.stringify(getState().cart.cartItems))
+  localStorage.setItem('cartItems', JSON.stringify(getState().basket.entities))
 }
 
 
@@ -30,7 +30,7 @@ export const incrementItemToBasket = (product) => (dispatch, getState) => {
     type: INCREMENT_ITEM_FROM_BASKET,
     payload: product,
   })
-  // localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+  localStorage.setItem('cartItems', JSON.stringify(getState().basket.entities))
 }
 
 
@@ -39,7 +39,7 @@ export const decrementItemToBasket = (product) => (dispatch, getState) => {
     type: DECREMENT_ITEM_FROM_BASKET,
     payload: product,
   })
-  // localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+  localStorage.setItem('cartItems', JSON.stringify(getState().basket.entities))
 }
 
 
@@ -49,5 +49,15 @@ export const removeItemFromBasket = (id) => (dispatch, getState) => {
     type: BASKET_REMOVE_ITEM,
     payload: id,
   })
-  // localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+  localStorage.setItem('cartItems', JSON.stringify(getState().basket.entities))
+}
+
+
+export const saveShippingAddress = (data) => (dispatch) => {
+  dispatch({
+    type: CART_SAVE_SHIPPING_ADDRESS,
+    payload: data,
+  })
+
+  localStorage.setItem('shippingAddress', JSON.stringify(data))
 }
