@@ -25,7 +25,7 @@ class Product(models.Model):
   product_photo4 = models.ImageField(null=True, blank=True, upload_to='photos/%Y/%m/%d/')
   description = models.TextField(null=True, blank=True, verbose_name='Описание')
   rating = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True, verbose_name='Рейтинг')
-  numReviews = models.IntegerField(null=True, blank=True, verbose_name='Комментарии')
+  num_reviews = models.IntegerField(null=True, blank=True, verbose_name='Комментарии')
   price = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True, verbose_name='Цена')
   count_in_stock = models.IntegerField(null=True, blank=True, default=0, verbose_name='Кол-во товара')
   code = models.CharField(max_length=32, null=True, blank=True, verbose_name='Артикул')
@@ -77,11 +77,11 @@ class Order(models.Model):
   tax_price = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True, verbose_name='Налог')
   shipping_price = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True, verbose_name='Цена доставки')
   total_price = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True, verbose_name='Итоговая сумма')
-  isPaid = models.BooleanField(default=False, verbose_name='Статус оплаты')
-  paidAt = models.DateTimeField(auto_now_add=False, null=True, blank=True, verbose_name='Дата оплаты')
+  is_paid = models.BooleanField(default=False, verbose_name='Статус оплаты')
+  paid_at = models.DateTimeField(auto_now_add=False, null=True, blank=True, verbose_name='Дата оплаты')
   is_delivered = models.BooleanField(default=False, verbose_name='Статус доставки')
   delivered_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата доставки')
-  created_at = models.DateTimeField(auto_now_add=False, null=True, blank=True, verbose_name='Дата создания')
+  created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True, verbose_name='Дата создания')
   id = models.AutoField(primary_key=True, editable=False)
 
   def __str__(self):
@@ -105,9 +105,9 @@ class ShippingAddress(models.Model):
   order = models.OneToOneField(Order, on_delete=models.CASCADE, null=True, blank=True)
   address = models.CharField(max_length=200, null=True, blank=True, verbose_name='Адрес')
   city = models.CharField(max_length=200, null=True, blank=True, verbose_name='Город')
-  postalCode = models.CharField(max_length=200, null=True, blank=True, verbose_name='Индекс')
+  postal_code = models.CharField(max_length=200, null=True, blank=True, verbose_name='Индекс')
   country = models.CharField(max_length=200, null=True, blank=True, verbose_name='Страна')
-  shippingPrice = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True, verbose_name='Стоимость доставки')
+  shipping_price = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True, verbose_name='Стоимость доставки')
   id = models.AutoField(primary_key=True, editable=False)
 
   def __str__(self):

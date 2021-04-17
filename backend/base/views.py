@@ -119,10 +119,8 @@ def get_product_by_category(request, category_slug, product_slug):
 def addOrderItems(request):
     user = request.user
     data = request.data
-    print('data:', data)
 
     orderItems = data['orderItems']
-    print('orderItems:', orderItems)
 
     if orderItems and len(orderItems) == 0:
         return Response({'detail': 'No Order Items'}, status=status.HTTP_400_BAD_REQUEST)
@@ -144,14 +142,13 @@ def addOrderItems(request):
             order=order,
             address=data['shippingAddress']['address'],
             city=data['shippingAddress']['city'],
-            postalCode=data['shippingAddress']['postalCode'],
+            postal_code=data['shippingAddress']['postalCode'],
             country=data['shippingAddress']['country'],
         )
 
         # (3) Create order items adn set order to orderItem relationship
         for i in orderItems:
             product = Product.objects.get(id=i['id'])
-            print('product:', product)
 
             item = OrderItem.objects.create(
                 product=product,
