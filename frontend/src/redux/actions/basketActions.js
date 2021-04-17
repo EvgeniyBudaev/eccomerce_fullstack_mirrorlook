@@ -12,13 +12,15 @@ export const addToBasket = (category_slug, product_slug) => async (dispatch, get
 
     dispatch({
     type: BASKET_ADD_ITEM,
-    payload : {
-      id: data.id,
-      name: data.name,
-      image:data.image,
-      price: data.price,
-      count_in_stock: data.count_in_stock
-    }
+        payload: {
+            id: data.id,
+            name: data.name,
+            image: data.image,
+            price: data.price,
+            count_in_stock: data.count_in_stock,
+            category_slug: category_slug,
+            product_slug: product_slug
+        }
   })
 
   localStorage.setItem('cartItems', JSON.stringify(getState().basket.entities))

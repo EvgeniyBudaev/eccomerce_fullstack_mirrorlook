@@ -1,14 +1,15 @@
-import React, {useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
-import {useHistory} from "react-router"
+import React from 'react'
+
+import PlaceOrder from "../../placeOrder"
 
 
 const PlaceOrderPage = () => {
     return (
         <>
-            PlaceOrderPage
+            <PlaceOrder />
         </>
     )
 }
 
 export default PlaceOrderPage
+
