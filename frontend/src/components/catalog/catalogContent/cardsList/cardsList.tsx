@@ -25,7 +25,7 @@ export type CardsListPopsType = MapStatePropsCardsListType & MapDispatchPropsCar
 
 
 const CardsList: React.FC<CardsListPopsType> = (props) => {
-  console.log('[CardsList][props]', props)
+  // console.log('[CardsList][props]', props)
   const { fetchProductsByCategory, products, loading, loaded, category_slug } = props
 
   useEffect(() => {

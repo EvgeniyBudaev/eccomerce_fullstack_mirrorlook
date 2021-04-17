@@ -2,13 +2,13 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {useHistory} from "react-router"
 
-import styles from './basketBottom.module.scss'
+import styles from './cartBottom.module.scss'
 import {ROUTES} from '../../../routes'
 import Button from '../../UI/button'
 import {IBasketBottom} from './interface'
 
 
-const BasketBottom: React.FC<IBasketBottom> = (props) => {
+const CartBottom: React.FC<IBasketBottom> = (props) => {
   const {total} = props
   const history = useHistory()
 
@@ -48,4 +48,4 @@ const BasketBottom: React.FC<IBasketBottom> = (props) => {
   )
 }
 
-export default BasketBottom
+export default CartBottom

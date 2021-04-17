@@ -8,12 +8,12 @@ import styles from './card.module.scss'
 import {ROUTES} from '../../routes'
 import {productSelector} from "../../redux/selectors"
 // import {
-//   addToBasketType,
+//   addToCartType,
 //   IProduct,
 //   ProductIncrementType
 // } from "../../redux/types"
 
-import {addToBasket} from "../../redux/actions/basketActions"
+import {addToBasket} from "../../redux/actions/cartActions"
 
 
 
@@ -33,7 +33,7 @@ const connector = connect(null, {addToBasket})
 
 // const Card: React.FC<CardTypes> = (props) => {
 const Card = (props) => {
-  console.log('[Card][props]', props)
+  // console.log('[Card][props]', props)
   const {product, category_slug, productIncrement, addToBasket} = props
   const {product_slug} = product
   const card = ClassNames(styles.card)

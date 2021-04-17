@@ -1,8 +1,8 @@
 import React from 'react'
 import {connect, ConnectedProps, useDispatch} from 'react-redux'
 
-import styles from './basketCard.module.scss'
-import {removeItemFromBasket, incrementItemToBasket, decrementItemToBasket} from "../../../redux/actions/basketActions"
+import styles from './cartCard.module.scss'
+import {removeItemFromBasket, incrementItemToBasket, decrementItemToBasket} from "../../../redux/actions/cartActions"
 
 const mapDispatchToProps = dispatch => ({
     removeItemFromCartHandler: id => dispatch(removeItemFromBasket(id)),
@@ -13,10 +13,10 @@ const mapDispatchToProps = dispatch => ({
 const connector = connect(null, mapDispatchToProps)
 
 
-const BasketCard = (props) => {
+const cartCard = (props) => {
   const {product, removeItemFromCartHandler, incrementItemToCartHandler, decrementItemToCartHandler} = props
   const {id, image, name, price, quantity} = product
-  console.log('[basketCard][props]', props)
+  // console.log('[cartCard][props]', props)
 
     // const dispatch =  useDispatch()
     // const removeItemFromCartHandler = (id) => {
@@ -91,4 +91,4 @@ const BasketCard = (props) => {
   )
 }
 
-export default connector(BasketCard)
+export default connector(cartCard)

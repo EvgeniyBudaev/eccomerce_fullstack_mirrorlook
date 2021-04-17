@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {useHistory} from "react-router"
 
 import Button from "../UI/button"
-import {saveShippingAddress} from "../../redux/actions/basketActions"
+import {saveShippingAddress} from "../../redux/actions/cartActions"
 import {ROUTES} from "../../routes"
 import CheckoutSteps from "../checkoutSteps"
 
@@ -12,16 +12,17 @@ const Shipping = () => {
     const history = useHistory()
     const dispatch = useDispatch()
 
-    const cart = useSelector(state => state.basket)
+    const cart = useSelector(state => state.cart)
     const {shippingAddress} = cart
 
     const [address, setAddress] = useState(shippingAddress.address)
     const [city, setCity] = useState(shippingAddress.city)
     const [postalCode, setPostalCode] = useState(shippingAddress.postalCode)
+    const [country, setCountry] = useState(shippingAddress.country)
 
     const submitHandler = (e) => {
         e.preventDefault()
-        const data = {address, city, postalCode}
+        const data = {address, city, postalCode, country}
         dispatch(saveShippingAddress(data))
         history.push(ROUTES.PAYMENT)
     }
@@ -56,6 +57,15 @@ const Shipping = () => {
                     placeholder="Введите Ваш почтовый индекс"
                     value={postalCode ? postalCode : ''}
                     onChange={(e) => setPostalCode(e.target.value)}
+                />
+
+                <label htmlFor="shipping_country">Страна</label>
+                <input
+                    id="shipping_country"
+                    type="text"
+                    placeholder="Страна"
+                    value={country ? country : ''}
+                    onChange={(e) => setCountry(e.target.value)}
                 />
 
                 <Button type="submit" text="Продолжить" />

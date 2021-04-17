@@ -1,10 +1,10 @@
 import {
-    BASKET_ADD_ITEM,
-    BASKET_REMOVE_ITEM,
-    INCREMENT_ITEM_FROM_BASKET,
-    DECREMENT_ITEM_FROM_BASKET,
-    CART_SAVE_SHIPPING_ADDRESS, CART_SAVE_PAYMENT_METHOD
-} from "../../constants/basketConstants"
+    CART_ADD_ITEM,
+    CART_REMOVE_ITEM,
+    INCREMENT_ITEM_FROM_CART,
+    DECREMENT_ITEM_FROM_CART,
+    CART_SAVE_SHIPPING_ADDRESS, CART_SAVE_PAYMENT_METHOD, CART_CLEAR_ITEMS
+} from "../../constants/cartConstants"
 import {addItemToCart, decrementItemToCart, removeItemFromCart} from "../utils"
 
 const initialState = {
@@ -12,27 +12,27 @@ const initialState = {
     shippingAddress: {}
 }
 
-const basketReducer = (state = initialState, action) => {
+const cartReducer = (state = initialState, action) => {
     switch (action.type) {
-        case BASKET_ADD_ITEM:
+        case CART_ADD_ITEM:
             return {
                 ...state,
                 entities: addItemToCart(state.entities, action.payload)
             }
 
-        case INCREMENT_ITEM_FROM_BASKET:
+        case INCREMENT_ITEM_FROM_CART:
             return {
                 ...state,
                 entities: addItemToCart(state.entities, action.payload)
             }
 
-        case DECREMENT_ITEM_FROM_BASKET:
+        case DECREMENT_ITEM_FROM_CART:
             return {
                 ...state,
                 entities: decrementItemToCart(state.entities, action.payload)
             }
 
-        case BASKET_REMOVE_ITEM:
+        case CART_REMOVE_ITEM:
             return {
                 ...state,
                 entities: removeItemFromCart(state.entities, action.payload)
@@ -50,9 +50,15 @@ const basketReducer = (state = initialState, action) => {
                 paymentMethod: action.payload
             }
 
+        case CART_CLEAR_ITEMS:
+            return {
+                ...state,
+                entities: []
+            }
+
         default:
             return state
     }
 }
 
-export {basketReducer}
+export {cartReducer}

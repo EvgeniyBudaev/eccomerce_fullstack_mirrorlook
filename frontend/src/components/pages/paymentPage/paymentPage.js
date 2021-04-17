@@ -5,14 +5,14 @@ import {useHistory} from "react-router"
 import {ROUTES} from "../../../routes"
 import CheckoutSteps from "../../checkoutSteps"
 import Button from "../../UI/button"
-import {savePaymentMethod} from "../../../redux/actions/basketActions"
+import {savePaymentMethod} from "../../../redux/actions/cartActions"
 
 
 const PaymentPage = () => {
     const history = useHistory()
     const dispatch = useDispatch()
 
-    const cart = useSelector(state => state.basket)
+    const cart = useSelector(state => state.cart)
     const {shippingAddress} = cart
 
     const [paymentMethod, setPaymentMethod] = useState('PayPal')

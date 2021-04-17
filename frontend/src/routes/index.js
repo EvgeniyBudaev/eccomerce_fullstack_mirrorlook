@@ -5,7 +5,7 @@ export const ROUTES = {
   CONTACTS: '/contacts/',
   CLEARANCE_SALE: '/clearance_sale/',
   DELIVERY: '/delivery/',
-  BASKET: '/basket/',
+  CART: '/cart/',
   CATALOG: '/catalog/',
   ORDER: '/order/',
   PRODUCT: '/product/',

@@ -18,7 +18,7 @@ const shippingAddressFromStorage = localStorage.getItem('shippingAddress')
   : {}
 
 const initialState = {
-  basket: {
+  cart: {
     entities: cartItemsFromStorage,
     shippingAddress: shippingAddressFromStorage
   },

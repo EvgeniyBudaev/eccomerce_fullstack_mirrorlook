@@ -11,7 +11,7 @@ import {ROUTES} from '../../../../routes'
 
 
 const mapStateToProps = state => ({
-    itemsCount: state.basket.entities.reduce((acc, item) => acc += item.quantity, 0)
+    itemsCount: state.cart.entities.reduce((acc, item) => acc += item.quantity, 0)
 })
 
 const connector = connect(mapStateToProps, null)
@@ -25,7 +25,7 @@ const MenuTopButtons = (props) => {
   return (
       <ul className={styles.menuTopButtons}>
         <li>
-          <Link to={ROUTES.BASKET}>
+          <Link to={ROUTES.CART}>
             <IconBasket />
               {itemsCount}
           </Link>

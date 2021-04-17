@@ -5,7 +5,8 @@ import {categoriesReducer} from "./categoriesReducer"
 import {productsReducer} from "./productsReducer"
 import {userLoginReducer} from "./userLoginReducer"
 import {userRegisterReducer} from "./userRegisterReducer"
-import {basketReducer} from "./basketReducer"
+import {orderCreateReducer} from "./orderReducer"
+import {cartReducer} from "./cartReducer"
 
 
 
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
     productDetails: productReducer,
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
-    basket: basketReducer
+    cart: cartReducer,
+    orderCreate: orderCreateReducer
 })
 
 

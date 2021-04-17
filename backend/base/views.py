@@ -119,8 +119,10 @@ def get_product_by_category(request, category_slug, product_slug):
 def addOrderItems(request):
     user = request.user
     data = request.data
+    print('data:', data)
 
     orderItems = data['orderItems']
+    print('orderItems:', orderItems)
 
     if orderItems and len(orderItems) == 0:
         return Response({'detail': 'No Order Items'}, status=status.HTTP_400_BAD_REQUEST)
@@ -130,10 +132,10 @@ def addOrderItems(request):
 
         order = Order.objects.create(
             user=user,
-            paymentMethod=data['paymentMethod'],
-            taxPrice=data['taxPrice'],
-            shippingPrice=data['shippingPrice'],
-            totalPrice=data['totalPrice']
+            payment_method=data['paymentMethod'],
+            tax_price=data['taxPrice'],
+            shipping_price=data['shippingPrice'],
+            total_price=data['totalPrice']
         )
 
         # (2) Create shipping address
@@ -148,20 +150,21 @@ def addOrderItems(request):
 
         # (3) Create order items adn set order to orderItem relationship
         for i in orderItems:
-            product = Product.objects.get(id=i['product'])
+            product = Product.objects.get(id=i['id'])
+            print('product:', product)
 
             item = OrderItem.objects.create(
                 product=product,
                 order=order,
                 name=product.name,
-                qty=i['qty'],
+                qty=i['quantity'],
                 price=i['price'],
                 image=product.image.url,
             )
 
             # (4) Update stock
 
-            product.countInStock -= item.qty
+            product.count_in_stock -= item.qty
             product.save()
 
         serializer = OrderSerializer(order, many=False)

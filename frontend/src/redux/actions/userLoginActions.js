@@ -20,7 +20,6 @@ export const login = (email, password) => async (dispatch) => {
     }
 
     const {data} = await axios.post('/api/users/login/', {'username': email, 'password': password}, config)
-    console.log('[userActions][data] ', data)
 
     dispatch({type: USER_LOGIN_SUCCESS, payload: data})
 

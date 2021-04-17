@@ -34,11 +34,11 @@ export const productLoadedSelector = (state, props) =>
 export const productByIdSelector = (state, props) => state.productDetails.entities[props.product_slug]
 
 
-export const basketSelector = (state) => state.basket.entities
+export const cartSelector = (state) => state.cart.entities
 
 
 export const totalSelector = createSelector(
-  basketSelector,
+  cartSelector,
   (orderProducts) =>
     orderProducts.reduce((acc, item) => acc += item.price * item.quantity, 0)
 )

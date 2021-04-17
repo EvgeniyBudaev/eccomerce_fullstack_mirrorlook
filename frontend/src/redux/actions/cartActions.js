@@ -1,17 +1,17 @@
 import axios from 'axios'
 
 import {
-    INCREMENT_ITEM_FROM_BASKET,
-    BASKET_ADD_ITEM,
-    BASKET_REMOVE_ITEM, DECREMENT_ITEM_FROM_BASKET, CART_SAVE_SHIPPING_ADDRESS, CART_SAVE_PAYMENT_METHOD
-} from "../../constants/basketConstants"
+    INCREMENT_ITEM_FROM_CART,
+    CART_ADD_ITEM,
+    CART_REMOVE_ITEM, DECREMENT_ITEM_FROM_CART, CART_SAVE_SHIPPING_ADDRESS, CART_SAVE_PAYMENT_METHOD
+} from "../../constants/cartConstants"
 
 
 export const addToBasket = (category_slug, product_slug) => async (dispatch, getState) => {
     const {data} = await axios.get(`/api/categories/${category_slug}/${product_slug}`)
 
     dispatch({
-    type: BASKET_ADD_ITEM,
+    type: CART_ADD_ITEM,
         payload: {
             id: data.id,
             name: data.name,
@@ -23,35 +23,35 @@ export const addToBasket = (category_slug, product_slug) => async (dispatch, get
         }
   })
 
-  localStorage.setItem('cartItems', JSON.stringify(getState().basket.entities))
+  localStorage.setItem('cartItems', JSON.stringify(getState().cart.entities))
 }
 
 
 export const incrementItemToBasket = (product) => (dispatch, getState) => {
   dispatch({
-    type: INCREMENT_ITEM_FROM_BASKET,
+    type: INCREMENT_ITEM_FROM_CART,
     payload: product,
   })
-  localStorage.setItem('cartItems', JSON.stringify(getState().basket.entities))
+  localStorage.setItem('cartItems', JSON.stringify(getState().cart.entities))
 }
 
 
 export const decrementItemToBasket = (product) => (dispatch, getState) => {
   dispatch({
-    type: DECREMENT_ITEM_FROM_BASKET,
+    type: DECREMENT_ITEM_FROM_CART,
     payload: product,
   })
-  localStorage.setItem('cartItems', JSON.stringify(getState().basket.entities))
+  localStorage.setItem('cartItems', JSON.stringify(getState().cart.entities))
 }
 
 
 export const removeItemFromBasket = (id) => (dispatch, getState) => {
     console.log('action remove by id', id)
   dispatch({
-    type: BASKET_REMOVE_ITEM,
+    type: CART_REMOVE_ITEM,
     payload: id,
   })
-  localStorage.setItem('cartItems', JSON.stringify(getState().basket.entities))
+  localStorage.setItem('cartItems', JSON.stringify(getState().cart.entities))
 }
 
 

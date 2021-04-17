@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {useHistory} from "react-router"
 import {Link} from 'react-router-dom'
@@ -6,15 +6,45 @@ import {Link} from 'react-router-dom'
 import CheckoutSteps from "../checkoutSteps"
 import {ROUTES} from "../../routes"
 import Button from "../UI/button"
+import {createOrder} from "../../redux/actions/orderActions"
+import {ORDER_CREATE_RESET} from "../../constants/orderConstants"
 
 
 const PlaceOrder = () => {
-    const cart = useSelector(state => state.basket)
-    cart.itemsPrice = cart.entities.reduce((acc, item) => acc + item.price * item.quantity, 0)
-    cart.shippingPrice = (cart.itemsPrice > 50000 ? 0 : 300)
-    cart.totalPrice = Number(cart.itemsPrice) + Number(cart.shippingPrice)
+    const orderCreate = useSelector(state => state.orderCreate)
+    const {order, error, success} = orderCreate
+    const dispatch = useDispatch()
+    const history = useHistory()
+    const cart = useSelector(state => state.cart)
+    console.log('cart', cart)
 
-    const placeOrder = () => {}
+    cart.itemsPrice = cart.entities.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)
+    cart.shippingPrice = (cart.itemsPrice > 50000 ? 0 : 300).toFixed(2)
+    cart.taxPrice = (cart.itemsPrice / 120 * 20).toFixed(2)
+    cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.shippingPrice)).toFixed(2)
+
+    if (!cart.paymentMethod) {
+        history.push('/payment')
+    }
+
+    useEffect(() => {
+        if (success) {
+            history.push(`/order/${order.id}`)
+            dispatch({type: ORDER_CREATE_RESET})
+        }
+    }, [success, history])
+
+    const placeOrder = () => {
+        dispatch(createOrder({
+            orderItems: cart.entities,
+            shippingAddress: cart.shippingAddress,
+            paymentMethod: cart.paymentMethod,
+            itemsPrice: cart.itemsPrice,
+            shippingPrice: cart.shippingPrice,
+            taxPrice: cart.taxPrice,
+            totalPrice: cart.totalPrice
+        }))
+    }
 
     return (
         <>
@@ -27,7 +57,9 @@ const PlaceOrder = () => {
                         <strong>Доставка:</strong>
                         {cart.shippingAddress.address}, {cart.shippingAddress.city}
                         {'   '}
-                        {cart.shippingAddress.postalCode}
+                        {cart.shippingAddress.postalCode},
+                        {' '}
+                        {cart.shippingAddress.country},
                     </p>
                 </div>
 
@@ -73,11 +105,24 @@ const PlaceOrder = () => {
                     <div>{cart.shippingPrice} руб.</div>
                 </div>
                 <div className="listGroup__item">
+                    <div>НДС:</div>
+                    <div>{cart.taxPrice} руб.</div>
+                </div>
+                <div className="listGroup__item">
                     <div>Общая сумма заказа:</div>
                     <div>{cart.totalPrice} руб.</div>
                 </div>
                 <div className="listGroup__item">
-                    <Button type="button" text="Разместить заказ" onClick={placeOrder} disabled={cart.entities === 0}></Button>
+                    {error && <p>{error}</p>}
+                </div>
+                <div className="listGroup__item">
+                    <Button
+                        type="button"
+                        text="Разместить заказ"
+                        onClick={placeOrder}
+                        disabled={cart.entities === 0}
+                    >
+                    </Button>
                 </div>
             </div>
         </>
