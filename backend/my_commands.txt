@@ -35,7 +35,6 @@ python manage.py createsuperuser
 
 pip install pillow
 pip install djangorestframework-simplejwt
-pip install djangorestframework-simplejwt
 
 python manage.py collectstatic
 
@@ -49,4 +48,18 @@ cd Documents/CODE/FULLSTACK/eccomerce_fullstack_proshop/
 mv ecom_tmp/ frontend  # меняем название на папку frontend
 git add .
 git status
+
+
+Запуск виртуального окружения проекта В Windows:
+.\venv\Scripts\activate
+В macOS или Linux:
+source venv/bin/activate
+
+Остановка виртуального окружения
+deactivate
+
+pip freeze > requirements.txt
+При клонировании репозитория на другой компьютер или сервер выполните (предварительно создав и активировав нужное виртуальное окружение):
+pip install -r requirements.txt
+Таким образом, разом установятся все необходимые пакеты.
 
