@@ -11,7 +11,7 @@ import {ROUTES} from '../../../../routes'
 
 
 const mapStateToProps = state => ({
-    itemsCount: state.cart.entities.reduce((acc, item) => acc += item.quantity, 0)
+    itemsCount: state.cart.entities.reduce((acc, item) => acc + item.quantity, 0)
 })
 
 const connector = connect(mapStateToProps, null)
@@ -20,6 +20,7 @@ const connector = connect(mapStateToProps, null)
 // type PropsType = RouteComponentProps
 const MenuTopButtons = (props) => {
 // const MenuTopButtons: React.FC<PropsType> = (props) => {
+//     console.log('[MenuTopButtons][props]', props)
     const {itemsCount} = props
 
   return (
