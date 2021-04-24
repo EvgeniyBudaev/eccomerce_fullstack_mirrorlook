@@ -87,7 +87,7 @@ const Card = (props) => {
             </button>
           </div>
           <div className={styles.footerBottom}>
-            <div className={styles.footerBottomNum}>{product.price} ₽</div>
+            <div className={styles.footerBottomNum}>{Math.ceil(product.price)} ₽</div>
             <div className={styles.footerBottomStatus}>В наличии</div>
             <button
                 className={styles.footerBottomBtn}

@@ -24,7 +24,7 @@ const CartBottom: React.FC<IBasketBottom> = (props) => {
       <div className={styles.right}>
         <div className={styles.rightInfo}>
           <p>
-            Итого: <span className={styles.semiBold}>{total}</span> рублей
+            Итого: <span className={styles.semiBold}>{Math.ceil(total)}</span> рублей
           </p>
           <p>
             + доставка в <Link to={ROUTES.CATALOG}>г. Москва</Link>

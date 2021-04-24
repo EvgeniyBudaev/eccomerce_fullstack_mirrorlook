@@ -6,7 +6,7 @@ import {
 
 const initialState = {
     loading: true,
-    entities: [],
+    orderItems: [],
     shippingAddress: {}
 }
 

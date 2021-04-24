@@ -92,7 +92,7 @@ class OrderItem(models.Model):
   product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
   order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
   name = models.CharField(max_length=200, null=True, blank=True, verbose_name='Наименование')
-  qty = models.IntegerField(null=True, blank=True, default=0, verbose_name='Кол-во')
+  quantity = models.IntegerField(null=True, blank=True, default=0, verbose_name='Кол-во')
   price = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True, verbose_name='Цена')
   image = models.CharField(max_length=200, null=True, blank=True, verbose_name='Фото')
   id = models.AutoField(primary_key=True, editable=False)

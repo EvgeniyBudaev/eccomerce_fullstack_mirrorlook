@@ -24,7 +24,7 @@ const Order = () => {
     // const {loading: loadingPay, success: successPay} = orderPay
 
     if (!loading && !error) {
-        order.itemsPrice = order.entities.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)
+        order.itemsPrice = order.orderItems.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)
     }
 
     // const addPayPalScript = () => {
@@ -60,6 +60,8 @@ const Order = () => {
     // const successPaymentHandler = (paymentResult) => {
     //     dispatch(payOrder(orderId, paymentResult))
     // }
+
+
 
     return loading ? (
         <Loader/>
@@ -107,9 +109,9 @@ const Order = () => {
                     <h3>Заказанные товары</h3>
                     <div>
                         <strong>Товары для заказа:</strong>
-                        {order.entities.length === 0 ? <p>Ваш заказ пуст</p> : (
+                        {order.orderItems.length === 0 ? <p>Ваш заказ пуст</p> : (
                             <div className="listGroup">
-                                {order.entities.map((item) => (
+                                {order.orderItems.map((item) => (
                                     <div className="listGroup__item"
                                          key={item.id}>
                                         <img src={item.image} alt={item.name}/>
@@ -118,7 +120,7 @@ const Order = () => {
                                             {item.name}
                                         </Link>
                                         {item.quantity} X {item.price} руб.
-                                        = {(item.quantity * item.price).toFixed(2)} руб.
+                                        = {item.quantity * item.price} руб.
                                     </div>
                                 ))}
                             </div>
@@ -133,19 +135,19 @@ const Order = () => {
                 </div>
                 <div className="listGroup__item">
                     <div>Товар:</div>
-                    <div>{order.itemsPrice} руб.</div>
+                    <div>{Math.ceil(order.itemsPrice)} руб.</div>
                 </div>
                 <div className="listGroup__item">
                     <div>Доставка:</div>
-                    <div>{order.shippingPrice} руб.</div>
+                    <div>{Math.ceil(order.shipping_price)} руб.</div>
                 </div>
                 <div className="listGroup__item">
                     <div>НДС:</div>
-                    <div>{order.taxPrice} руб.</div>
+                    <div>{order.tax_price} руб.</div>
                 </div>
                 <div className="listGroup__item">
                     <div>Общая сумма заказа:</div>
-                    <div>{order.totalPrice} руб.</div>
+                    <div>{Math.ceil(order.total_price)} руб.</div>
                 </div>
                 <div className="listGroup__item">
                     {error && <p>{error}</p>}
@@ -154,6 +156,7 @@ const Order = () => {
             </div>
         </>
     )
+
 }
 
 export default Order

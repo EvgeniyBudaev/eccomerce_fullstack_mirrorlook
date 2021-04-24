@@ -34,7 +34,7 @@ const cartCard = (props) => {
       </div>
       <div className={styles.unit}>
         <p className={styles.unitText}>Цена за ед.</p>
-        <p className={styles.unitPrice}>{price} ₽</p>
+        <p className={styles.unitPrice}>{Math.ceil(price)} ₽</p>
       </div>
       <div className={styles.amountBox}>
         <button className={styles.button}  onClick={() => decrementItemToCartHandler(product)}>-</button>
@@ -48,7 +48,7 @@ const cartCard = (props) => {
         >+</button>
       </div>
       <div className={styles.total}>
-        <p className={styles.totalPrice}>{quantity * price} ₽</p>
+        <p className={styles.totalPrice}>{quantity * Math.ceil(price)} ₽</p>
         <button
             className={styles.totalButton}
             onClick={() => removeItemFromCartHandler(id)}
