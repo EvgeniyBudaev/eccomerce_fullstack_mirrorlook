@@ -9,109 +9,111 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import generics
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
-from django_filters.rest_framework import DjangoFilterBackend
+# from django_filters.rest_framework import DjangoFilterBackend
 
 
 from .models import Product, Category, Order, OrderItem, ShippingAddress
-from .serializers import ProductSerializer, CategorySerializer, UserSerializer, UserSerializerWithToken, OrderSerializer
+from .serializers import ProductSerializer, CategorySerializer, UserSerializer, \
+    UserSerializerWithToken, OrderSerializer
 
 
 # Create your views here.
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
-  def validate(self, attrs):
-    data = super().validate(attrs)
+    def validate(self, attrs):
+        data = super().validate(attrs)
 
-    serializer = UserSerializerWithToken(self.user).data
-    for k, v in serializer.items():
-      data[k] = v
+        serializer = UserSerializerWithToken(self.user).data
+        for k, v in serializer.items():
+            data[k] = v
 
-    return data
+        return data
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
-  serializer_class = MyTokenObtainPairSerializer
+    serializer_class = MyTokenObtainPairSerializer
 
 
 @api_view(['POST'])
 def registerUser(request):
-  data = request.data
-  try:
-    user = User.objects.create(
-      first_name=data['name'],
-      username=data['email'],
-      email=data['email'],
-      password=make_password(data['password'])
-    )
-    serializer = UserSerializerWithToken(user, many=False)
-    return Response(serializer.data)
-  except:
-    message = {'detail': 'User with this email already exists'}
-    return Response(message, status=status.HTTP_400_BAD_REQUEST)
+    data = request.data
+    try:
+        user = User.objects.create(
+            first_name=data['name'],
+            username=data['email'],
+            email=data['email'],
+            password=make_password(data['password'])
+        )
+        serializer = UserSerializerWithToken(user, many=False)
+        return Response(serializer.data)
+    except:
+        message = {'detail': 'User with this email already exists'}
+        return Response(message, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def getUserProfile(request):
-  user = request.user
-  serializer = UserSerializer(user, many=False)
-  return Response(serializer.data)
+    user = request.user
+    serializer = UserSerializer(user, many=False)
+    return Response(serializer.data)
 
 
 @api_view(['GET'])
 @permission_classes([IsAdminUser])
 def getUsers(request):
-  users = User.objects.all()
-  serializer = UserSerializer(users, many=True)
-  return Response(serializer.data)
+    users = User.objects.all()
+    serializer = UserSerializer(users, many=True)
+    return Response(serializer.data)
 
 
 @api_view(['GET'])
 def get_products(request):
-  products = Product.objects.all()
-  serializer = ProductSerializer(products, many=True)  # установив many=True , вы сообщаете drf, что queryset содержит несколько элементов (список элементов), поэтому drf должен сериализовать каждый элемент с помощью класса serializer (и serializer.data будет списком). если вы не зададите этот аргумент, это означает, что queryset-это один экземпляр, а serializer.data - один объект)
+    products = Product.objects.all()
+    serializer = ProductSerializer(products,
+                                   many=True)  # установив many=True , вы сообщаете drf, что queryset содержит несколько элементов (список элементов), поэтому drf должен сериализовать каждый элемент с помощью класса serializer (и serializer.data будет списком). если вы не зададите этот аргумент, это означает, что queryset-это один экземпляр, а serializer.data - один объект)
 
-  return Response(serializer.data)
+    return Response(serializer.data)
 
 
 @api_view(['GET'])
 def get_product(request, pk):
-  product = Product.objects.get(id=pk)
-  serializer = ProductSerializer(product, many=False)
+    product = Product.objects.get(id=pk)
+    serializer = ProductSerializer(product, many=False)
 
-  return Response(serializer.data)
+    return Response(serializer.data)
 
 
 @api_view(['GET'])
 def get_categories(request):
-  categories = Category.objects.all()
-  serializer = CategorySerializer(categories, many=True)
+    categories = Category.objects.all()
+    serializer = CategorySerializer(categories, many=True)
 
-  return Response(serializer.data)
+    return Response(serializer.data)
 
 
 @api_view(['GET'])
 def get_products_by_category(request, category_slug):
-  category = None
-  products = Product.objects.all()
-  if category_slug:
-    category = Category.objects.get(category_slug=category_slug)
-    productsAfterFilter = products.filter(category_id=category.id)
-  serializer = ProductSerializer(productsAfterFilter, many=True)
+    category = None
+    products = Product.objects.all()
+    if category_slug:
+        category = Category.objects.get(category_slug=category_slug)
+        productsAfterFilter = products.filter(category_id=category.id)
+    serializer = ProductSerializer(productsAfterFilter, many=True)
 
-  return Response(serializer.data)
+    return Response(serializer.data)
 
 
 @api_view(['GET'])
 def get_product_by_category(request, category_slug, product_slug):
-  product = None
+    product = None
 
-  if category_slug and product_slug:
-    product = Product.objects.get(product_slug=product_slug)
-  serializer = ProductSerializer(product, many=False)
+    if category_slug and product_slug:
+        product = Product.objects.get(product_slug=product_slug)
+    serializer = ProductSerializer(product, many=False)
 
-  return Response(serializer.data)
+    return Response(serializer.data)
 
 
 @api_view(['POST'])
@@ -123,7 +125,8 @@ def addOrderItems(request):
     orderItems = data['orderItems']
 
     if orderItems and len(orderItems) == 0:
-        return Response({'detail': 'No Order Items'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'detail': 'No Order Items'},
+                        status=status.HTTP_400_BAD_REQUEST)
     else:
 
         # (1) Create order
@@ -171,17 +174,16 @@ def addOrderItems(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def getOrderById(request, pk):
-  user= request.user
-  order = Order.objects.get(id=pk)
-  try:
-    if user.is_staff or order.user == user:
-      serializer = OrderSerializer(order, many=False)
-      return Response(serializer.data)
-    else:
-      Response({'detail': 'Not authorized to to view this order'}, status=status.HTTP_400_BAD_REQUEST)
-  except:
-    return Response({'detail': 'Order does not exist'}, status=status.HTTP_400_BAD_REQUEST)
+    user = request.user
 
-
-
-
+    try:
+        order = Order.objects.get(id=pk)
+        if user.is_staff or order.user == user:
+            serializer = OrderSerializer(order, many=False)
+            return Response(serializer.data)
+        else:
+            Response({'detail': 'Not authorized to to view this order'},
+                     status=status.HTTP_400_BAD_REQUEST)
+    except:
+        return Response({'detail': 'Order does not exist'},
+                        status=status.HTTP_400_BAD_REQUEST)
