@@ -10,6 +10,7 @@ from rest_framework import generics
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 # from django_filters.rest_framework import DjangoFilterBackend
+from datetime import datetime
 
 
 from .models import Product, Category, Order, OrderItem, ShippingAddress
@@ -187,3 +188,13 @@ def getOrderById(request, pk):
     except:
         return Response({'detail': 'Order does not exist'},
                         status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def updateOrderToPaid(request, pk):
+    order = Order.objects.get(id=pk)
+    order.isPaid = True
+    order.paidAt = datetime.now()
+    order.save()
+    return Response('Order was paid')
