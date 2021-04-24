@@ -8,6 +8,7 @@ import {userRegisterReducer} from "./userRegisterReducer"
 import {orderCreateReducer} from "./orderReducer"
 import {cartReducer} from "./cartReducer"
 import {orderDetailsReducer} from "./orderDetailsReducer"
+import {orderPayReducer} from "./orderPayReducer"
 
 
 
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
     userRegister: userRegisterReducer,
     cart: cartReducer,
     orderCreate: orderCreateReducer,
-    orderDetails: orderDetailsReducer
+    orderDetails: orderDetailsReducer,
+    orderPay: orderPayReducer
 })
 
 
