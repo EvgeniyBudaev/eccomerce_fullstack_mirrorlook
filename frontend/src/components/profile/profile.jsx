@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react"
-import {useHistory} from "react-router-dom"
+import {useHistory, Link} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
 
 import {USER_UPDATE_PROFILE_RESET} from "../../constants/userConstants"
@@ -120,6 +120,43 @@ const Profile = () => {
 
             <div>
                 <h2>Мои заказы</h2>
+                        {loadingOrders ? (
+                            <Loader/>
+                        ) : errorOrders ? (
+                            <p>{errorOrders}</p>
+                        ) : (
+                            <table className='table-sm'>
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Date</th>
+                                    <th>Total</th>
+                                    <th>Paid</th>
+                                    <th>Delivered</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {orders.map(order => (
+                                    <tr key={order.id}>
+                                        <td>{order.id}</td>
+                                        <td>{order.created_at.substring(0, 10)}</td>
+                                        <td>{order.total_price} руб.</td>
+                                        <td>{order.is_paid ? order.paid_at : (
+                                            <i className='fas fa-times'
+                                               style={{color: 'red'}}>не оплачено</i>
+                                        )}</td>
+                                        <td>
+                                            <Link
+                                                to={`/order/${order.id}`}>
+                                                <button>Details</button>
+                                            </Link>
+                                        </td>
+                                    </tr>
+                                ))}
+                                </tbody>
+                            </table>
+                        )}
             </div>
         </div>
     )
