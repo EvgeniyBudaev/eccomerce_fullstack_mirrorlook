@@ -14,6 +14,7 @@ import ShippingPage from "../pages/shippingPage"
 import PaymentPage from "../pages/paymentPage"
 import PlaceOrderPage from "../pages/placeOrderPage"
 import OrderPage from "../pages/orderPage"
+import ProfilePage from "../pages/profilePage"
 
 
 const App: React.FC = () => {
@@ -27,6 +28,7 @@ const App: React.FC = () => {
         <Route path={ROUTES.CART} component={CartPage} />
         <Route path={ROUTES.LOGIN} component={LoginPage} />
         <Route path={ROUTES.REGISTER} component={RegisterPage} />
+        <Route path={ROUTES.PROFILE} component={ProfilePage} />
         <Route path={ROUTES.SHIPPING} component={ShippingPage} />
         <Route path={ROUTES.PAYMENT} component={PaymentPage} />
         <Route path={ROUTES.PLACE_ORDER} component={PlaceOrderPage} />
