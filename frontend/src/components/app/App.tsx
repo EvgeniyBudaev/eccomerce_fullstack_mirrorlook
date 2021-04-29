@@ -15,6 +15,7 @@ import PaymentPage from "../pages/paymentPage"
 import PlaceOrderPage from "../pages/placeOrderPage"
 import OrderPage from "../pages/orderPage"
 import ProfilePage from "../pages/profilePage"
+import UserListPage from "../pages/userListPage"
 
 
 const App: React.FC = () => {
@@ -33,6 +34,8 @@ const App: React.FC = () => {
         <Route path={ROUTES.PAYMENT} component={PaymentPage} />
         <Route path={ROUTES.PLACE_ORDER} component={PlaceOrderPage} />
         <Route path="/order/:id" component={OrderPage} />
+
+        <Route path={ROUTES.ADMIN + 'userlist'} component={UserListPage} />
       </Switch>
     </MainLayout>
   )

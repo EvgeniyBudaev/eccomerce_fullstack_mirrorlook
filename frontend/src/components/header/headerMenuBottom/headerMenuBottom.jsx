@@ -56,8 +56,9 @@ const HeaderMenuBottom = () => {
               Категории
             </NavLink>
           </li>
+
           {userInfo ? (
-            <div>
+            <div className='NavDropDown' id='username'>
               <Link to={ROUTES.PROFILE}>
                 <p>{userInfo.name}</p>
               </Link>
@@ -70,6 +71,21 @@ const HeaderMenuBottom = () => {
             </NavLink>
           </li>
           )}
+
+          {userInfo && userInfo.isAdmin && (
+              <div className='NavDropDown' id='adminmenu'>
+                  <Link to={ROUTES.ADMIN + 'userlist'}>
+                      <p>Users</p>
+                  </Link>
+                  <Link to={ROUTES.ADMIN + 'productlist'}>
+                      <p>Products</p>
+                  </Link>
+                  <Link to={ROUTES.ADMIN + 'orderlist'}>
+                      <p>Orders</p>
+                  </Link>
+              </div>
+          )}
+
           {/*<li>*/}
           {/*  <NavLink*/}
           {/*    to={ROUTES.CLEARANCE_SALE}*/}

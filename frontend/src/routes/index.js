@@ -23,5 +23,7 @@ export const ROUTES = {
   PROFILE: '/profile',
   SHIPPING: '/shipping',
   PAYMENT: '/payment',
-  PLACE_ORDER: '/place_order'
+  PLACE_ORDER: '/place_order',
+
+  ADMIN: '/admin/'
 }
