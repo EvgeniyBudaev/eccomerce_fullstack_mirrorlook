@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux"
 import {useHistory, Link} from "react-router-dom"
 
 import {listUsers} from "../../redux/actions/userListActions"
+import {deleteUser} from "../../redux/actions/userDeleteActions"
 import {ROUTES} from "../../routes"
 import Loader from "../loader"
 
@@ -16,16 +17,21 @@ const UserList = () => {
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
 
+    const userDelete = useSelector(state => state.userDelete)
+    const {success: successDelete} = userDelete
+
     useEffect(() => {
         if (userInfo && userInfo.isAdmin) {
-                    dispatch(listUsers())
+            dispatch(listUsers())
         } else {
              history.push(ROUTES.LOGIN)
         }
-    }, [dispatch, history])
+    }, [dispatch, history, successDelete])
 
     const deleteHandler = (id) => {
-
+        if (window.confirm('Are you sure you want to delete this user?')) {
+            dispatch(deleteUser(id))
+        }
     }
 
     return (
