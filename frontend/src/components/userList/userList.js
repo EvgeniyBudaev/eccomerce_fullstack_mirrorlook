@@ -64,7 +64,7 @@ const UserList = () => {
                                         <i>Нет</i>
                                     )}</td>
                                     <td>
-                                        <Link to={`/admin/user/${user._id}`}>
+                                        <Link to={`/admin/user/${user._id}/edit`}>
                                             <button className="btn-sm">
                                                 <i className="fas fa-edit">Edit</i>
                                             </button>
