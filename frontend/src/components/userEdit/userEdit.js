@@ -3,9 +3,13 @@ import {useDispatch, useSelector} from "react-redux"
 import {useHistory, useRouteMatch, Link} from "react-router-dom"
 import {getUserDetails} from "../../redux/actions/userDetails"
 import Loader from "../loader"
+import {updateUser} from "../../redux/actions/userUpdateActions"
+import {USER_UPDATE_RESET} from "../../constants/userConstants";
 
 const UserEdit = () => {
     const match = useRouteMatch()
+    const history = useHistory()
+
     const userId = match.params.id
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -16,18 +20,32 @@ const UserEdit = () => {
     const userDetails = useSelector(state => state.userDetails)
     const {error, loading, user} = userDetails
 
+    const userUpdate = useSelector(state => state.userUpdate)
+    const {
+        error: errorUpdate,
+        loading: loadingUpdate,
+        success: successUpdate
+    } = userUpdate
+
     useEffect(() => {
-        if (!user.name ?? user._id !== Number(userId)) {
-            dispatch(getUserDetails(userId))
+        if (successUpdate) {
+            dispatch({type: USER_UPDATE_RESET})
+            history.push('/admin/userlist')
         } else {
-            setName(user.name)
-            setEmail(user.email)
-            setIsAdmin(user.isAdmin)
+            if (!user.name ?? user._id !== Number(userId)) {
+                dispatch(getUserDetails(userId))
+            } else {
+                setName(user.name)
+                setEmail(user.email)
+                setIsAdmin(user.isAdmin)
+            }
         }
-    }, [user, userId])
+
+    }, [user, userId, successUpdate, history])
 
     const submitHandler = (e) => {
         e.preventDefault()
+        dispatch(updateUser({_id: user.id, name, email, isAdmin}))
     }
 
     return (
@@ -37,6 +55,11 @@ const UserEdit = () => {
             </Link>
             <div className="FormContainer">
                 <h1>User Edit</h1>
+
+                {loadingUpdate && <Loader/>}
+                {errorUpdate &&
+                <p>{errorUpdate}</p>}
+
                 {loading ? <Loader/> : error ?
                     <p>{error}</p> : (
                         <form onSubmit={submitHandler}>
