@@ -77,8 +77,8 @@ const HeaderMenuBottom = () => {
                   <Link to={ROUTES.ADMIN + 'userlist'}>
                       <p>Users</p>
                   </Link>
-                  <Link to={ROUTES.ADMIN + 'productlist'}>
-                      <p>Products</p>
+                  <Link to={ROUTES.ADMIN + 'categories/'}>
+                      <p>Categories</p>
                   </Link>
                   <Link to={ROUTES.ADMIN + 'orderlist'}>
                       <p>Orders</p>
