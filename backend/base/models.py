@@ -18,7 +18,7 @@ class Product(models.Model):
   category_id = models.ForeignKey(Category, null=True, verbose_name='Категория', on_delete=models.CASCADE)
   name = models.CharField(max_length=200, null=True, blank=True, verbose_name='Наименование')
   product_slug = models.SlugField(max_length=255, unique=True, verbose_name='URL продукта')
-  image = models.ImageField(null=True, blank=True, upload_to='photos/%Y/%m/%d/')
+  image = models.ImageField(null=True, blank=True, upload_to='photos/%Y/%m/%d/', default='/placeholder.png')
   product_photo1 = models.ImageField(null=True, blank=True, upload_to='photos/%Y/%m/%d/')
   product_photo2 = models.ImageField(null=True, blank=True, upload_to='photos/%Y/%m/%d/')
   product_photo3 = models.ImageField(null=True, blank=True, upload_to='photos/%Y/%m/%d/')

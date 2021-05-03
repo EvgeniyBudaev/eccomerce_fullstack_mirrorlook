@@ -164,6 +164,65 @@ def get_product_by_category(request, category_slug, product_slug):
     return Response(serializer.data)
 
 
+@api_view(['POST'])
+@permission_classes([IsAdminUser])
+def create_product_by_category(request, category_slug):
+    user = request.user
+    product = None
+    if category_slug:
+        product = Product.objects.create(
+            user=user,
+            name='Sample Name',
+            product_slug='sampleslug',
+            description='',
+            price=0,
+            count_in_stock=0,
+            category_id=1
+        )
+    serializer = ProductSerializer(product, many=False)
+    return Response(serializer.data)
+
+
+@api_view(['PUT'])
+@permission_classes([IsAdminUser])
+def update_product_by_category(request, category_slug, product_slug):
+    user = request.user
+    product = None
+    if category_slug and product_slug:
+        data = request.data
+        product = Product.objects.get(product_slug=product_slug)
+        product.name = data['name']
+        product.product_slug = data['product_slug']
+        product.description = data['description']
+        product.rating = data['rating']
+        product.num_reviews = data['num_reviews']
+        product.price = data['price']
+        product.count_in_stock = data['count_in_stock']
+        product.code = data['code']
+        product.color_frame = data['color_frame']
+        product.color_mirror = data['color_mirror']
+        product.base_mirror = data['base_mirror']
+        product.height = data['height']
+        product.width = data['width']
+        product.weight = data['weight']
+        product.type_of_installation = data['type_of_installation']
+        product.type_of_mounting = data['type_of_mounting']
+        product.heightWithoutFrame = data['heightWithoutFrame']
+        product.weightWithoutFrame = data['weightWithoutFrame']
+        product.faced = data['faced']
+        product.form = data['form']
+        product.appointment = data['appointment']
+        product.material_mirror = data['material_mirror']
+        product.material_frame = data['material_frame']
+        product.country_brand = data['country_brand']
+        product.country_manufacturer = data['country_manufacturer']
+        product.manufacturer = data['manufacturer']
+        product.category_id = data['category_id']
+    product.save()
+    serializer = ProductSerializer(product, many=False)
+    return Response(serializer.data)
+
+
 @api_view(['DELETE'])
 @permission_classes([IsAdminUser])
 def delete_product_by_category(request, category_slug, product_slug):
