@@ -7,6 +7,7 @@ import {
 import {withRouter} from "react-router"
 import {connect, useDispatch, useSelector} from "react-redux"
 import {fetchProductsByCategory} from "../../redux/actions/productsActions"
+import {deleteProduct} from "../../redux/actions/deleteProductActions"
 import {Link, useHistory} from "react-router-dom"
 import Loader from "../loader"
 
@@ -15,7 +16,14 @@ const AdminCardsList = (props) => {
     const history = useHistory()
 
     const {fetchProductsByCategory, loading, loaded, category_slug, products} = props
-    console.log('props', props)
+    // console.log('props', props)
+
+    const productDelete = useSelector(state => state.productDelete)
+    const {
+        loading: loadingDelete,
+        error: errorDelete,
+        success: successDelete
+    } = productDelete
 
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
@@ -26,11 +34,11 @@ const AdminCardsList = (props) => {
         } else {
             history.push('/login')
         }
-    }, [dispatch, history, userInfo])
+    }, [dispatch, history, userInfo, successDelete])
 
-    const deleteHandler = (id) => {
+    const deleteHandler = (category_slug, product_slug) => {
         if (window.confirm('Are you sure you want to delete this category?')) {
-
+            dispatch(deleteProduct(category_slug, product_slug))
         }
     }
 
@@ -52,6 +60,8 @@ const AdminCardsList = (props) => {
                 </div>
             </div>
 
+            {loadingDelete && <Loader/>}
+            {errorDelete && <p>{errorDelete}</p>}
 
             <table className="table-sm">
                 <thead>
@@ -80,7 +90,7 @@ const AdminCardsList = (props) => {
                             </Link>
 
                             <button className="btn-sm"
-                                    onClick={() => deleteHandler(entity.id)}
+                                    onClick={() => deleteHandler(entity.category_slug, entity.product_slug)}
                             >
                                 <i>Delete</i>
                             </button>

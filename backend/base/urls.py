@@ -10,6 +10,8 @@ urlpatterns = [
        name='products_by_category'),
   path('categories/<slug:category_slug>/<slug:product_slug>/',
        views.get_product_by_category, name='product_by_category'),
+  path('categories/<slug:category_slug>/delete/<slug:product_slug>/',
+       views.delete_product_by_category, name="product-delete"),
 
   path('users/', views.getUsers, name="users"),
   path('users/profile/', views.getUserProfile, name="users-profile"),

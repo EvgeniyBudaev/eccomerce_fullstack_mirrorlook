@@ -119,7 +119,6 @@ def get_products(request):
     products = Product.objects.all()
     serializer = ProductSerializer(products,
                                    many=True)  # установив many=True , вы сообщаете drf, что queryset содержит несколько элементов (список элементов), поэтому drf должен сериализовать каждый элемент с помощью класса serializer (и serializer.data будет списком). если вы не зададите этот аргумент, это означает, что queryset-это один экземпляр, а serializer.data - один объект)
-
     return Response(serializer.data)
 
 
@@ -127,15 +126,21 @@ def get_products(request):
 def get_product(request, pk):
     product = Product.objects.get(id=pk)
     serializer = ProductSerializer(product, many=False)
-
     return Response(serializer.data)
+
+
+@api_view(['DELETE'])
+@permission_classes([IsAdminUser])
+def deleteProduct(request, pk):
+    product = Product.objects.get(_id=pk)
+    product.delete()
+    return Response('Product deleted')
 
 
 @api_view(['GET'])
 def get_categories(request):
     categories = Category.objects.all()
     serializer = CategorySerializer(categories, many=True)
-
     return Response(serializer.data)
 
 
@@ -147,19 +152,26 @@ def get_products_by_category(request, category_slug):
         category = Category.objects.get(category_slug=category_slug)
         productsAfterFilter = products.filter(category_id=category.id)
     serializer = ProductSerializer(productsAfterFilter, many=True)
-
     return Response(serializer.data)
 
 
 @api_view(['GET'])
 def get_product_by_category(request, category_slug, product_slug):
     product = None
-
     if category_slug and product_slug:
         product = Product.objects.get(product_slug=product_slug)
     serializer = ProductSerializer(product, many=False)
-
     return Response(serializer.data)
+
+
+@api_view(['DELETE'])
+@permission_classes([IsAdminUser])
+def delete_product_by_category(request, category_slug, product_slug):
+    product = None
+    if category_slug and product_slug:
+        product = Product.objects.get(product_slug=product_slug)
+    product.delete()
+    return Response('Product deleted')
 
 
 @api_view(['POST'])
@@ -167,9 +179,7 @@ def get_product_by_category(request, category_slug, product_slug):
 def addOrderItems(request):
     user = request.user
     data = request.data
-
     orderItems = data['orderItems']
-
     if orderItems and len(orderItems) == 0:
         return Response({'detail': 'No Order Items'},
                         status=status.HTTP_400_BAD_REQUEST)
