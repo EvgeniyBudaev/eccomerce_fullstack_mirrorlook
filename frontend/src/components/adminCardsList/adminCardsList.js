@@ -10,12 +10,14 @@ import {fetchProductsByCategory} from "../../redux/actions/productsActions"
 import {deleteProduct} from "../../redux/actions/deleteProductActions"
 import {Link, useHistory} from "react-router-dom"
 import Loader from "../loader"
+import {PRODUCT_CREATE_RESET} from "../../constants/productConstants"
+import {createProduct} from "../../redux/actions/productCreateActions"
 
 const AdminCardsList = (props) => {
     const dispatch = useDispatch()
     const history = useHistory()
 
-    const {fetchProductsByCategory, loading, loaded, category_slug, products} = props
+    const {fetchProductsByCategory, createProduct, deleteProduct, loading, loaded, category_slug, products} = props
     // console.log('props', props)
 
     const productDelete = useSelector(state => state.productDelete)
@@ -25,24 +27,38 @@ const AdminCardsList = (props) => {
         success: successDelete
     } = productDelete
 
+    const productCreate = useSelector(state => state.productCreate)
+    const {
+        loading: loadingCreate,
+        error: errorCreate,
+        success: successCreate,
+        product: createdProduct
+    } = productCreate
+
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
 
     useEffect(() => {
-        if (userInfo && userInfo.isAdmin) {
-            fetchProductsByCategory(category_slug)
-        } else {
+        dispatch({type: PRODUCT_CREATE_RESET})
+        if (!userInfo.isAdmin) {
             history.push('/login')
         }
-    }, [dispatch, history, userInfo, successDelete])
+
+        if (successCreate) {
+            history.push(`/admin/categories/${category_slug}/${createdProduct.product_slug}/edit`)
+        } else {
+            fetchProductsByCategory(category_slug)
+        }
+    }, [dispatch, history, userInfo, successDelete, successCreate, createdProduct])
 
     const deleteHandler = (category_slug, product_slug) => {
         if (window.confirm('Are you sure you want to delete this category?')) {
-            dispatch(deleteProduct(category_slug, product_slug))
+            deleteProduct(category_slug, product_slug)
         }
     }
 
-    const createHandler = (item) => {
+    const createHandler = (category_slug) => {
+        createProduct(category_slug)
     }
 
     if (loading ?? !loaded) return <Loader />
@@ -54,7 +70,7 @@ const AdminCardsList = (props) => {
                     <h1>Товары по категории</h1>
                 </div>
                 <div className="text-right">
-                    <button className="my-3" onClick={createHandler}>
+                    <button className="my-3" onClick={() => createHandler(category_slug)}>
                         <i>+</i> Добавить новый товар
                     </button>
                 </div>
@@ -62,6 +78,9 @@ const AdminCardsList = (props) => {
 
             {loadingDelete && <Loader/>}
             {errorDelete && <p>{errorDelete}</p>}
+
+            {loadingCreate && <Loader/>}
+            {errorCreate && <p>{errorCreate}</p>}
 
             <table className="table-sm">
                 <thead>
@@ -114,5 +133,5 @@ const mapStateToProps = (state, ownProps) => {
 
 export default withRouter(connect(
     mapStateToProps,
-    {fetchProductsByCategory}
+    {fetchProductsByCategory, createProduct, deleteProduct}
 )(AdminCardsList))

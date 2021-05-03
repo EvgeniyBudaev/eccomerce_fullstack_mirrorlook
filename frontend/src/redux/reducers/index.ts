@@ -16,12 +16,14 @@ import {userListReducer} from "./userListReducer"
 import {userDeleteReducer} from "./userDeleteReducer"
 import {userUpdateReducer} from "./userUpdateReducer"
 import {productDeleteReducer} from "./productDeleteReducer"
+import {productCreateReducer} from "./productCreateReducer"
 
 const rootReducer = combineReducers({
     categories: categoriesReducer,
     products: productsReducer,
     productDetails: productReducer,
     productDelete: productDeleteReducer,
+    productCreate: productCreateReducer,
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,

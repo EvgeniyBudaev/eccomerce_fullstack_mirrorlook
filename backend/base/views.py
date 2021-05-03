@@ -186,7 +186,6 @@ def create_product_by_category(request, category_slug):
 @api_view(['PUT'])
 @permission_classes([IsAdminUser])
 def update_product_by_category(request, category_slug, product_slug):
-    user = request.user
     product = None
     if category_slug and product_slug:
         data = request.data
