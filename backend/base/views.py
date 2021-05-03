@@ -177,7 +177,7 @@ def create_product_by_category(request, category_slug):
             description='',
             price=0,
             count_in_stock=0,
-            category_id=1
+            category_id_id=1
         )
     serializer = ProductSerializer(product, many=False)
     return Response(serializer.data)
