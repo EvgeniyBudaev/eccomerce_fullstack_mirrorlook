@@ -216,7 +216,6 @@ def update_product_by_category(request, category_slug, product_slug):
         product.country_brand = data['country_brand']
         product.country_manufacturer = data['country_manufacturer']
         product.manufacturer = data['manufacturer']
-        product.category_id = data['category_id']
     product.save()
     serializer = ProductSerializer(product, many=False)
     return Response(serializer.data)
