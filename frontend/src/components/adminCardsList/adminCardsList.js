@@ -102,7 +102,7 @@ const AdminCardsList = (props) => {
 
                         <td>
                             <Link
-                                to={`/admin/categories/${entity.category_slug}/${entity.product_slug}/edit`} key={entity.id}>
+                                to={`/admin/categories/${category_slug}/${entity.product_slug}/edit`} key={entity.id}>
                                 <button className="btn-sm">
                                     <i className="fas fa-edit">Edit</i>
                                 </button>

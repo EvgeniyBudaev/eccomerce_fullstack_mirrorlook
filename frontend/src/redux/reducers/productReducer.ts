@@ -7,32 +7,23 @@ import {
 } from "../../constants/productConstants"
 import {
     ProductDetailsTypes,
-    ILoading,
-    ILoaded,
     IFailure,
-    IProduct
+    IProduct,
 } from "../types"
 
-
-interface IEntities {
-  [payload: string]: IProduct
-}
-
 export interface IStateProduct {
-  loading: ILoading
-  loaded: ILoaded,
+  loading: boolean
+  loaded: boolean
   error: null | IFailure,
-  entities: IEntities
+  product: any
 }
-
 
 const initialState: IStateProduct  = {
-  loading: {},
-  loaded: {},
+  loading: false,
+  loaded: false,
   error: null as IFailure | null,
-  entities: {},
+  product: {}
 }
-
 
 const productReducer = (state = initialState, action: ProductDetailsTypes ): IStateProduct  =>
   produce(state, (draft) => {
@@ -40,20 +31,20 @@ const productReducer = (state = initialState, action: ProductDetailsTypes ): ISt
 
     switch(action.type) {
       case LOAD_PRODUCT_DETAILS_REQUEST: {
-        draft.loading[action.product_slug] = true
+        draft.loading = true
         draft.error = null
         break
       }
       case LOAD_PRODUCT_DETAILS_SUCCESS: {
-        draft.loading[action.product_slug] = false
-        draft.loaded[action.product_slug] = true
+        draft.loading = false
+        draft.loaded = true
         draft.error = null
-        draft.entities[action.product_slug] = action.payload
+        draft.product = action.payload
         break
       }
       case LOAD_PRODUCT_DETAILS_FAILURE: {
-        draft.loading[action.product_slug] = false
-        draft.loaded[action.product_slug] = false
+        draft.loading = false
+        draft.loaded = false
         draft.error = action.payload
         break
       }
@@ -62,6 +53,5 @@ const productReducer = (state = initialState, action: ProductDetailsTypes ): ISt
         return
     }
   })
-
 
 export {productReducer}
