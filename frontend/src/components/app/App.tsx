@@ -19,6 +19,7 @@ import UserListPage from "../pages/userListPage"
 import UserEditPage from "../pages/userEditPage"
 import AdminCategoriesPage from "../pages/adminCategoriesPage"
 import AdminCardsListPage from "../pages/adminCardsListPage"
+import AdminProductEditPage from "../pages/adminProductEditPage"
 
 
 const App: React.FC = () => {
@@ -40,6 +41,7 @@ const App: React.FC = () => {
 
         <Route path={ROUTES.ADMIN + 'userlist'} component={UserListPage} />
         <Route path="/admin/user/:id/edit" component={UserEditPage} />
+        <Route path="/admin/categories/:category_slug/:product_slug/edit" component={AdminProductEditPage} exact />
         <Route path="/admin/categories/:category_slug/" component={AdminCardsListPage} exact />
         <Route path="/admin/categories/" component={AdminCategoriesPage} />
       </Switch>
