@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from "react-redux"
 import {useHistory, useRouteMatch, Link, withRouter} from "react-router-dom"
+import axios from 'axios'
 import Loader from "../loader"
 import {fetchProductDetail} from "../../redux/actions/productActions"
 import {ROUTES} from "../../routes"
@@ -47,6 +48,8 @@ const AdminProductEdit = () => {
     const [country_brand, setCountryBrand] = useState('')
     const [country_manufacturer, setCountryManufacturer] = useState('')
     const [manufacturer, setManufacturer] = useState('')
+
+    const [uploading, setUploading] = useState(false)
 
 
     const productDetails = useSelector(state => state.productDetails)
@@ -140,6 +143,27 @@ const AdminProductEdit = () => {
         }))
     }
 
+        const uploadFileHandler = async (e) => {
+        console.log('uploadFileHandler')
+        const file = e.target.files[0]
+        const formData = new FormData()
+        formData.append('image', file)
+        formData.append('product_slug', productSlug)
+        setUploading(true)
+        try {
+            const config = {
+                headers: {
+                    'Content-Type':'multipart/form-data'
+                }
+            }
+            const {data} = await axios.post(`/api/categories/${categorySlug}/upload/`, formData, config)
+            setImage(data)
+            setUploading(false)
+        } catch (error) {
+            setUploading(false)
+        }
+    }
+
     return (
         <div>
             <Link to={"/admin" + ROUTES.CATEGORIES + categorySlug + "/"}>
@@ -190,6 +214,11 @@ const AdminProductEdit = () => {
                                         onChange={e => setImage(e.target.value)}
                                     >
                                     </input>
+                                    <input
+                                        type="file"
+                                        onChange={uploadFileHandler}
+                                    />
+                                    {uploading && <Loader />}
                                 </div>
 
                                 <div className="Form-Group">

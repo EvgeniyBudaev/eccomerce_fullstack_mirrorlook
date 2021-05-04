@@ -232,6 +232,17 @@ def delete_product_by_category(request, category_slug, product_slug):
 
 
 @api_view(['POST'])
+def upload_image_by_category(request, category_slug):
+    if category_slug:
+        data = request.data
+        product_slug = data['product_slug']
+        product = Product.objects.get(product_slug=product_slug)
+        product.image = request.FILES.get('image')
+        product.save()
+    return Response('Image was uploaded')
+
+
+@api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def addOrderItems(request):
     user = request.user

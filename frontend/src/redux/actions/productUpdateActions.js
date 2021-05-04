@@ -7,8 +7,6 @@ import {
 } from "../../constants/productConstants"
 
 export const updateProduct = (category_slug, product) => async (dispatch, getState) => {
-    console.log('action category_slug', category_slug)
-    console.log('action product', product)
     try {
         dispatch({
             type: PRODUCT_UPDATE_REQUEST
