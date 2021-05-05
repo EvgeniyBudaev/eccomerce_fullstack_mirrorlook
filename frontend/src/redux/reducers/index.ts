@@ -19,6 +19,7 @@ import {productDeleteReducer} from "./productDeleteReducer"
 import {productCreateReducer} from "./productCreateReducer"
 import {productUpdateReducer} from "./productUpdateReducer"
 import {orderListReducer} from "./orderListReducer"
+import {orderDeliverReducer} from "./orderDeliverReducer"
 
 const rootReducer = combineReducers({
     categories: categoriesReducer,
@@ -35,6 +36,7 @@ const rootReducer = combineReducers({
     orderCreate: orderCreateReducer,
     orderDetails: orderDetailsReducer,
     orderPay: orderPayReducer,
+    orderDeliver: orderDeliverReducer,
     orderListMy: orderListMyReducer,
     orderList: orderListReducer,
     userList: userListReducer,
