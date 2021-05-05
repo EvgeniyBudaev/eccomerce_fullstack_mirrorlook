@@ -20,7 +20,7 @@ import UserEditPage from "../pages/userEditPage"
 import AdminCategoriesPage from "../pages/adminCategoriesPage"
 import AdminCardsListPage from "../pages/adminCardsListPage"
 import AdminProductEditPage from "../pages/adminProductEditPage"
-
+import OrderListPage from "../pages/orderListPage"
 
 const App: React.FC = () => {
   return (
@@ -44,6 +44,7 @@ const App: React.FC = () => {
         <Route path="/admin/categories/:category_slug/:product_slug/edit" component={AdminProductEditPage} exact />
         <Route path="/admin/categories/:category_slug/" component={AdminCardsListPage} exact />
         <Route path="/admin/categories/" component={AdminCategoriesPage} />
+        <Route path="/admin/orderlist/" component={OrderListPage} />
       </Switch>
     </MainLayout>
   )
