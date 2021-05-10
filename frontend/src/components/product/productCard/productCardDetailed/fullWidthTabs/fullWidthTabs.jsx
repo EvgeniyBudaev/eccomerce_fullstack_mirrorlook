@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Specifications from './specifications'
 import ProductCardDelivery from './productCardDelivery'
+import ReviewsCourse from "./reviewsCourse/reviewsCourse";
 // import Reviews from './reviews'
 
 
@@ -80,16 +81,22 @@ function SimpleTabs(props) {
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
           <Tab label="Характеристики" {...a11yProps(0)} />
           {/*<Tab label={reviewsAmount} {...a11yProps(1)} />*/}
+          <Tab label="Отзывы" {...a11yProps(1)} />
           <Tab label="Доставка и оплата" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
         <Specifications product={product} />
       </TabPanel>
+
+      <TabPanel value={value} index={1}>
+        <ReviewsCourse />
+      </TabPanel>
+
       {/*<TabPanel value={value} index={1}>*/}
       {/*  <Reviews productId={product.id} reviews={product.reviews} />*/}
       {/*</TabPanel>*/}
-      <TabPanel value={value} index={1}>
+      <TabPanel value={value} index={2}>
         <ProductCardDelivery />
       </TabPanel>
     </div>

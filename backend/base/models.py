@@ -65,7 +65,7 @@ class Review(models.Model):
   name = models.CharField(max_length=200, null=True, blank=True, verbose_name='Наименование')
   rating = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True, verbose_name='Рейтинг')
   comment = models.TextField(null=True, blank=True, verbose_name='Комментарий')
-  createdAt = models.DateTimeField(auto_now_add=True)
+  created_at = models.DateTimeField(auto_now_add=True)
   id = models.AutoField(primary_key=True, editable=False)
 
   def __str__(self):

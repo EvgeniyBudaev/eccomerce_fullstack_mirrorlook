@@ -22,7 +22,9 @@ const initialState: IStateProduct  = {
   loading: false,
   loaded: false,
   error: null as IFailure | null,
-  product: {}
+  product: {
+      reviews: []
+  }
 }
 
 const productReducer = (state = initialState, action: ProductDetailsTypes ): IStateProduct  =>
