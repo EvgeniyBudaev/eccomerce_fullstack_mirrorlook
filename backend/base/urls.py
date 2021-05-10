@@ -12,6 +12,8 @@ urlpatterns = [
          views.upload_image_by_category, name='upload_image_by_category'),
     path('categories/<slug:category_slug>/', views.get_products_by_category,
          name='products_by_category'),
+    path('categories/<slug:category_slug>/<slug:product_slug>/reviews/',
+         views.createProductReview, name='create-review'),
     path('categories/<slug:category_slug>/<slug:product_slug>/',
          views.get_product_by_category, name='get_product_by_category'),
     path('categories/<slug:category_slug>/update/<slug:product_slug>/',
